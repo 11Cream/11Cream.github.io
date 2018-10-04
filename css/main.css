@@ -5,14 +5,13 @@ body{
     padding: 0;
     width: 100%;
     height:100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}    
+    background-color: black;
+    background-repeat: no-repeat;
+    justify-content: center;    
+}   
 
-.container
+.container  
 {
-
 
     position: relative;
     width:500px;
@@ -24,7 +23,7 @@ body{
 
 .container img
 {
-    position: absolute;;
+    position: absolute;
     width: 100%;
     height: 100%;
     transition: 0.5s;
@@ -50,4 +49,16 @@ body{
     opacity: 0.4;
 }
 
+.block{
+ 
+    width: 100%;
+    justify-content: center;
+    display: flex;
+ 
+}
+    
+.block p{
+    color: white;
+
+}
 
