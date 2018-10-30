@@ -8,17 +8,21 @@ body{
     background-color: black;
     background-repeat: no-repeat;
     justify-content: center;    
+    color: white;
 }   
 
 .container  
 {
 
+    margin-top:150px;
     position: relative;
     width:500px;
     height: 340px;
     background: rgba(0,0,0,0 );
     transform: rotate(-30deg) skew(25deg) scale(.8); 
     transition: 0.5s;
+    float: left;
+    margin-right: 100px;
 }
 
 .container img
@@ -28,37 +32,104 @@ body{
     height: 100%;
     transition: 0.5s;
 }
-.container:hover img:nth-child(4)
+.container img:nth-child(4)
 {
     transform: translate(160px,-160px);
     opacity: 1;
 }
-.container:hover img:nth-child(3)
+.container img:nth-child(3)
 {
     transform: translate(120px,-120px);
     opacity: 0.8;
 }
-.container:hover img:nth-child(2)
+.container img:nth-child(2)
 {
     transform: translate(80px,-80px);
     opacity: 0.6;
 }
-.container:hover img:nth-child(1)
+.container img:nth-child(1)
 {
     transform: translate(40px,-40px);
     opacity: 0.4;
 }
 
 .block{
+    margin-top: 20px;
+    font-size: 20pt;
  
     width: 100%;
-    justify-content: center;
+    justify-content:center; 
     display: flex;
+    color: white;
+}
+    
+
+.block1{
+ 
+
+    width: 100px;
+    display: flex-end;
+    align-items: flex-end;
+    padding-right: 100px;
  
 }
     
-.block {
-    color: white;
+
+.block2{
+    //background-color: blue;
+    width: 100%;
+    display: flex;                            /*  added  */
+    justify-content: flex-end;                /*  changed  */
+    align-items: flex-start;                  /*  added, to avoid image to stretch  */
+ 
+}
+.side{
+    position:all;
+    font-size: 16pt; 
+   //background-color: red;
+
+
+
 
 }
 
+.nav{
+   
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+ 
+}
+
+.nav ul {
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+   
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.nav li {
+    float: left;
+}
+
+.nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: blue;
+}
