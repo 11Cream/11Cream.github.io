@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generic Class</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+pre{
+color:blue;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Generics</h1>
+
+    <p>As in Java, classes in Kotlin may have type parameters:</p>
+
+    <pre><code>class Box(t: T) {
+    var value = t
+    }</code></pre>
+    <br>
+    <p> In general, to create an instance of such a class, we need to provide the type
+        arguments:</p>
+
+    <pre><code>val box: Box<Int> = Box<Int>(1)</code></pre>
+    <br>
+    <p>But if the parameters may be inferred, e.g. from the constructor arguments or by some other
+        means, one is allowed to omit
+        the type arguments:</p>
+
+    <pre><code>val box = Box(1) // 1 has type Int, so the compiler figures out that we are talking about Box<Int></code></pre>
+</div>
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

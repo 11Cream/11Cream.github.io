@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title id="toolbar_title">Idioms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+        pre{
+        color:blue;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1 id="idioms">Idioms</h1>
+    <p>A collection of random and frequently used idioms in Kotlin. If you have a
+        favorite idiom, contribute it by sending a pull request.</p>
+    <h3 id="creating-dtos-pojospocos">Creating DTOs (POJOs/POCOs)</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Customer(val name: String, val email: String)
+</code></pre>
+    <p>provides a <code>Customer</code> class with the following functionality:</p>
+    <ul>
+        <li>getters (and setters in case of <em class="keyword">var</em>s) for all
+            properties
+        </li>
+        <li><code>equals()</code></li>
+        <li><code>hashCode()</code></li>
+        <li><code>toString()</code></li>
+        <li><code>copy()</code></li>
+        <li><code>component1()</code>, <code>component2()</code>, …, for all properties
+
+        </li>
+    </ul>
+    <h3 id="default-values-for-function-parameters">Default values for function
+        parameters</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(a: Int = 0, b: String = "") { ... }
+</code></pre>
+    <h3 id="filtering-a-list">Filtering a list</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val positives = list.filter { x -&gt; x &gt; 0 }
+</code></pre>
+    <p>Or alternatively, even shorter:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val positives = list.filter { it &gt; 0 }
+</code></pre>
+    <h3 id="string-interpolation">String Interpolation</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">println("Name $name")
+</code></pre>
+    <h3 id="instance-checks">Instance Checks</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
+    is Foo -&gt; ...
+    is Bar -&gt; ...
+    else   -&gt; ...
+}
+</code></pre>
+    <h3 id="traversing-a-maplist-of-pairs">Traversing a map/list of pairs</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">for ((k, v) in map) {
+    println("$k -&gt; $v")
+}
+</code></pre>
+    <p><code>k</code>, <code>v</code> can be called anything.</p>
+    <h3 id="using-ranges">Using ranges</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..100) { ... }  // closed range: includes 100
+for (i in 1 until 100) { ... } // half-open range: does not include 100
+for (x in 2..10 step 2) { ... }
+for (x in 10 downTo 1) { ... }
+if (x in 1..10) { ... }
+</code></pre>
+    <h3 id="read-only-list">Read-only list</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val list = listOf("a", "b", "c")
+</code></pre>
+    <h3 id="read-only-map">Read-only map</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val map = mapOf("a" to 1, "b" to 2, "c" to 3)
+</code></pre>
+    <h3 id="accessing-a-map">Accessing a map</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">println(map["key"])
+map["key"] = value
+</code></pre>
+    <h3 id="lazy-property">Lazy property</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val p: String by lazy {
+    // compute the string
+}
+</code></pre>
+    <h3 id="extension-functions">Extension Functions</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun String.spaceToCamelCase() { ... }
+
+"Convert this to camelcase".spaceToCamelCase()
+</code></pre>
+    <h3 id="creating-a-singleton">Creating a singleton</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">object Resource {
+    val name = "Name"
+}
+</code></pre>
+    <h3 id="if-not-null-shorthand">If not null shorthand</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val files = File("Test").listFiles()
+
+println(files?.size)
+</code></pre>
+    <h3 id="if-not-null-and-else-shorthand">If not null and else shorthand</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val files = File("Test").listFiles()
+
+println(files?.size ?: "empty")
+</code></pre>
+    <h3 id="executing-a-statement-if-null">Executing a statement if null</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ...
+val email = data["email"] ?: throw IllegalStateException("Email is missing!")
+</code></pre>
+    <h3 id="execute-if-not-null">Execute if not null</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ...
+
+data?.let {
+    ... // execute this block if not null
+}
+</code></pre>
+    <h3 id="return-on-when-statement">Return on when statement</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun transform(color: String): Int {
+    return when (color) {
+        "Red" -&gt; 0
+        "Green" -&gt; 1
+        "Blue" -&gt; 2
+        else -&gt; throw IllegalArgumentException("Invalid color param value")
+    }
+}
+</code></pre>
+    <h3 id="trycatch-expression">'try/catch' expression</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun test() {
+    val result = try {
+        count()
+    } catch (e: ArithmeticException) {
+        throw IllegalStateException(e)
+    }
+
+    // Working with result
+}
+</code></pre>
+    <h3 id="if-expression">'if' expression</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(param: Int) {
+    val result = if (param == 1) {
+        "one"
+    } else if (param == 2) {
+        "two"
+    } else {
+        "three"
+    }
+}
+</code></pre>
+    <h3 id="builder-style-usage-of-methods-that-return-unit">Builder-style usage of
+        methods that return <code>Unit</code></h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun arrayOfMinusOnes(size: Int): IntArray {
+    return IntArray(size).apply { fill(-1) }
+}
+</code></pre>
+    <h3 id="single-expression-functions">Single-expression functions</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun theAnswer() = 42
+</code></pre>
+    <p>This is equivalent to</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun theAnswer(): Int {
+    return 42
+}
+</code></pre>
+    <p>This can be effectively combined with other idioms, leading to shorter code. E.g.
+        with the <em class="keyword">when</em>-expression:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun transform(color: String): Int = when (color) {
+    "Red" -&gt; 0
+    "Green" -&gt; 1
+    "Blue" -&gt; 2
+    else -&gt; throw IllegalArgumentException("Invalid color param value")
+}
+</code></pre>
+    <h3 id="calling-multiple-methods-on-an-object-instance-with">Calling multiple
+        methods on an object instance ('with')</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Turtle {
+    fun penDown()
+    fun penUp()
+    fun turn(degrees: Double)
+    fun forward(pixels: Double)
+}
+
+val myTurtle = Turtle()
+with(myTurtle) { //draw a 100 pix square
+    penDown()
+    for(i in 1..4) {
+        forward(100.0)
+        turn(90.0)
+    }
+    penUp()
+}
+</code></pre>
+    <h3 id="java-7s-try-with-resources">Java 7's try with resources</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val stream = Files.newInputStream(Paths.get("/some/file.txt"))
+stream.buffered().reader().use { reader -&gt;
+    println(reader.readText())
+}
+</code></pre>
+    <h3 id="convenient-form-for-a-generic-function-that-requires-the-generic-type-information">
+        Convenient form for a generic function that requires the generic type
+        information</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">//  public final class Gson {
+//     ...
+//     public &lt;T&gt; T fromJson(JsonElement json, Class&lt;T&gt; classOfT) throws JsonSyntaxException {
+//     ...
+
+inline fun &lt;reified T: Any&gt; Gson.fromJson(json): T = this.fromJson(json, T::class.java)
+</code></pre>
+    <h3 id="consuming-a-nullable-boolean">Consuming a nullable Boolean</h3>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val b: Boolean? = ...
+if (b == true) {
+    ...
+} else {
+    // `b` is false or null
+}
+</code></pre>
+
+</div>
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+
+</body>
+</html>

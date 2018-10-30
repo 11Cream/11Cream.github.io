@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title id="toolbar_title">Inline Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+        pre{
+        color:blue;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="inline-functions">Inline Functions</h1>
+    <p>Using <b style="color:blue;">higher-order functions</b> imposes certain runtime
+        penalties: each function is an object, and it captures a closure,
+        i.e. those variables that are accessed in the body of the function.
+        Memory allocations (both for function objects and classes) and virtual calls
+        introduce runtime overhead.</p>
+    <p>But it appears that in many cases this kind of overhead can be eliminated by
+        inlining the lambda expressions.
+        The functions shown below are good examples of this situation. I.e., the <code>lock()</code>
+        function could be easily inlined at call-sites.
+        Consider the following case:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">lock(l) { foo() }
+</code></pre>
+    <p>Instead of creating a function object for the parameter and generating a call,
+        the compiler could emit the following code</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">l.lock()
+try {
+    foo()
+}
+finally {
+    l.unlock()
+}
+</code></pre>
+    <p>Isn't it what we wanted from the very beginning?</p>
+    <p>To make the compiler do this, we need to mark the <code>lock()</code> function
+        with the <code>inline</code> modifier:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun lock&lt;T&gt;(lock: Lock, body: () -&gt; T): T {
+    // ...
+}
+</code></pre>
+    <p>The <code>inline</code> modifier affects both the function itself and the lambdas
+        passed to it: all of those will be inlined
+        into the call site.</p>
+    <p>Inlining may cause the generated code to grow, but if we do it in a reasonable
+        way (do not inline big functions)
+        it will pay off in performance, especially at "megamorphic" call-sites inside
+        loops.</p>
+    <h2 id="noinline">noinline</h2>
+    <p>In case you want only some of the lambdas passed to an inline function to be
+        inlined, you can mark some of your function
+        parameters with the <code>noinline</code> modifier:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun foo(inlined: () -&gt; Unit, noinline notInlined: () -&gt; Unit) {
+    // ...
+}
+</code></pre>
+    <p>Inlinable lambdas can only be called inside the inline functions or passed as
+        inlinable arguments,
+        but <code>noinline</code> ones can be manipulated in any way we like: stored in
+        fields, passed around etc.</p>
+    <p>Note that if an inline function has no inlinable function parameters and no
+        <b style="color:blue;">reified type parameters</b>, the compiler
+        will issue a warning, since inlining such functions is
+        very unlikely to be beneficial (you can suppress the warning if you are sure the
+        inlining is needed).</p>
+    <h2 id="non-local-returns">Non-local returns</h2>
+    <p>In Kotlin, we can only use a normal, unqualified <code>return</code> to exit a
+        named function or an anonymous function.
+        This means that to exit a lambda, we have to use a <b style="color:blue;">label</b>, and a
+        bare
+        <code>return</code> is forbidden
+        inside a lambda, because a lambda can not make the enclosing function return:
+    </p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
+    ordinaryFunction {
+        return // ERROR: can not make `foo` return here
+    }
+}
+</code></pre>
+    <p>But if the function the lambda is passed to is inlined, the return can be inlined
+        as well, so it is allowed:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
+    inlineFunction {
+        return // OK: the lambda is inlined
+    }
+}
+</code></pre>
+    <p>Such returns (located in a lambda, but exiting the enclosing function) are called
+        <em>non-local</em> returns. We are used to
+        this sort of constructs in loops, which inline functions often enclose:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun hasZeros(ints: List&lt;Int&gt;): Boolean {
+    ints.forEach {
+        if (it == 0) return true // returns from hasZeros
+    }
+    return false
+}
+</code></pre>
+    <p>Note that some inline functions may call the lambdas passed to them as parameters
+        not directly from the function body,
+        but from another execution context, such as a local object or a nested function.
+        In such cases, non-local control flow
+        is also not allowed in the lambdas. To indicate that, the lambda parameter needs
+        to be marked with
+        the <code>crossinline</code> modifier:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun f(crossinline body: () -&gt; Unit) {
+    val f = object: Runnable {
+        override fun run() = body()
+    }
+    // ...
+}
+</code></pre>
+    <blockquote>
+        <p><code>break</code> and <code>continue</code> are not yet available in inlined
+            lambdas, but we are planning to support them too</p>
+    </blockquote>
+    <h2 id="reified-type-parameters">Reified type parameters</h2>
+    <p>Sometimes we need to access a type passed to us as a parameter:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; TreeNode.findParentOfType(clazz: Class&lt;T&gt;): T? {
+    var p = parent
+    while (p != null &amp;&amp; !clazz.isInstance(p)) {
+        p = p.parent
+    }
+    @Suppress("UNCHECKED_CAST")
+    return p as T?
+}
+</code></pre>
+    <p>Here, we walk up a tree and use reflection to check if a node has a certain type.
+        It’s all fine, but the call site is not very pretty:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">treeNode.findParentOfType(MyTreeNode::class.java)
+</code></pre>
+    <p>What we actually want is simply pass a type to this function, i.e. call it like
+        this:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">treeNode.findParentOfType&lt;MyTreeNode&gt;()
+</code></pre>
+    <p>To enable this, inline functions support <em>reified type parameters</em>, so we
+        can write something like this:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun &lt;reified T&gt; TreeNode.findParentOfType(): T? {
+    var p = parent
+    while (p != null &amp;&amp; p !is T) {
+        p = p.parent
+    }
+    return p as T?
+}
+</code></pre>
+    <p>We qualified the type parameter with the <code>reified</code> modifier, now it’s
+        accessible inside the function,
+        almost as if it were a normal class. Since the function is inlined, no
+        reflection is needed, normal operators like <code>!is</code>
+        and <code>as</code> are working now. Also, we can call it as mentioned above:
+        <code>myTree.findParentOfType&lt;MyTreeNodeType&gt;()</code>.</p>
+    <p>Though reflection may not be needed in many cases, we can still use it with a
+        reified type parameter:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun &lt;reified T&gt; membersOf() = T::class.members
+
+fun main(s: Array&lt;String&gt;) {
+    println(membersOf&lt;StringBuilder&gt;().joinToString("\n"))
+}
+</code></pre>
+    <p>Normal functions (not marked as inline) can not have reified parameters.
+        A type that does not have a run-time representation (e.g. a non-reified type
+        parameter or a fictitious type like <code>Nothing</code>)
+        can not be used as an argument for a reified type parameter.</p>
+    <h2 id="inline-properties-since-11">Inline properties (since 1.1)</h2>
+    <p>The <code>inline</code> modifier can be used on accessors of properties that
+        don't have a backing field.
+        You can annotate individual property accessors:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val foo: Foo
+    inline get() = Foo()
+
+var bar: Bar
+    get() = ...
+    inline set(v) { ... }
+</code></pre>
+    <p>You can also annotate an entire property, which marks both of its accessors as
+        inline:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline var bar: Bar
+    get() = ...
+    set(v) { ... }
+</code></pre>
+    <p>At the call site, inline accessors are inlined as regular inline functions.</p>
+
+</div>
+
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

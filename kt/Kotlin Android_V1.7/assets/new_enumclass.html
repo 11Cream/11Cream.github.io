@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enum Class</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+pre{
+color:blue;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+<h1>Enum Classes</h1>
+
+<p>The most basic usage of enum classes is implementing type-safe enums</p>
+
+<pre><code>enum class Direction {
+    NORTH, SOUTH, WEST, EAST
+    }</code></pre>
+<br>
+<p> Each enum constant is an object. Enum constants are separated with commas.</p>
+
+<h2>Initialization</h2>
+
+<p>Since each enum is an instance of the enum class, they can be initialized</p>
+
+<pre><code> enum class Color(val rgb: Int) {
+    RED(0xFF0000),
+    GREEN(0x00FF00),
+    BLUE(0x0000FF)
+    }</code></pre>
+
+
+<h2>Anonymous Classes</h2>
+
+<p>Enum constants can also declare their own anonymous classes</p>
+
+<pre><code>enum class ProtocolState {
+    WAITING {
+    override fun signal() = TALKING
+    },
+
+    TALKING {
+    override fun signal() = WAITING
+    };
+
+    abstract fun signal(): ProtocolState
+    }</code></pre>
+<br>
+<p>with their corresponding methods, as well as overriding base methods. Note that if the enum class
+    defines any members,
+    you need to separate the enum constant definitions from the member definitions with a semicolon,
+    just like in Java.</p>
+</div>
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

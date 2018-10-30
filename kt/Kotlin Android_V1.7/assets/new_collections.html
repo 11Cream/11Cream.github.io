@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="collections">Collections</h1>
+    <p>Unlike many languages, Kotlin distinguishes between mutable and immutable
+        collections (lists, sets, maps, etc). Precise control over exactly when
+        collections can be edited is useful for eliminating bugs, and for designing good
+        APIs.</p>
+    <p>It is important to understand up front the difference between a read only <em>view</em>
+        of a mutable collection, and an actually immutable collection. Both are easy to
+        create, but the type system doesn't express the difference, so keeping track of
+        that (if it's relevant) is up to you.</p>
+    <p>The Kotlin <code>List&lt;out T&gt;</code> type is an interface that provides read
+        only operations like <code>size</code>, <code>get</code> and so on. Like in
+        Java, it inherits from <code>Collection&lt;T&gt;</code> and that in turn
+        inherits from <code>Iterable&lt;T&gt;</code>. Methods that change the list are
+        added by the <code>MutableList&lt;T&gt;</code> interface. This pattern holds
+        also for <code>Set&lt;out T&gt;/MutableSet&lt;T&gt;</code> and <code>Map&lt;K,
+            out V&gt;/MutableMap&lt;K, V&gt;</code>.</p>
+    <p>We can see basic usage of the list and set types below:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val numbers: MutableList&lt;Int&gt; = mutableListOf(1, 2, 3)
+val readOnlyView: List&lt;Int&gt; = numbers
+println(numbers)        // prints "[1, 2, 3]"
+numbers.add(4)
+println(readOnlyView)   // prints "[1, 2, 3, 4]"
+readOnlyView.clear()    // -&gt; does not compile
+
+val strings = hashSetOf("a", "b", "c", "c")
+assert(strings.size == 3)
+</code></pre>
+    <p>Kotlin does not have dedicated syntax constructs for creating lists or sets. Use
+        methods from the standard library, such as
+        <code>listOf()</code>, <code>mutableListOf()</code>, <code>setOf()</code>,
+        <code>mutableSetOf()</code>.
+        Map creation in NOT performance-critical code can be accomplished with a simple
+        idiom: <code>mapOf(a to b, c to
+            d)</code></p>
+    <p>Note that the <code>readOnlyView</code> variable points to the same list and
+        changes as the underlying list changes. If the only references that exist to a
+        list are of the read only variety, we can consider the collection fully
+        immutable. A simple way to create such a collection is like this:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val items = listOf(1, 2, 3)
+</code></pre>
+    <p>Currently, the <code>listOf</code> method is implemented using an array list, but
+        in future more memory-efficient fully immutable collection types could be
+        returned that exploit the fact that they know they can't change.</p>
+    <p>Note that the read only types are covariant.
+        That means, you can take a <code>List&lt;Rectangle&gt;</code> and assign it to
+        <code>List&lt;Shape&gt;</code> assuming Rectangle inherits from Shape. This
+        wouldn't be allowed with the mutable collection types because it would allow for
+        failures at runtime.</p>
+    <p>Sometimes you want to return to the caller a snapshot of a collection at a
+        particular point in time, one that's guaranteed to not change:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Controller {
+    private val _items = mutableListOf&lt;String&gt;()
+    val items: List&lt;String&gt; get() = _items.toList()
+}
+</code></pre>
+    <p>The <code>toList</code> extension method just duplicates the lists items, thus,
+        the returned list is guaranteed to never change.</p>
+    <p>There are various useful extension methods on lists and sets that are worth being
+        familiar with:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val items = listOf(1, 2, 3, 4)
+items.first() == 1
+items.last() == 4
+items.filter { it % 2 == 0 }   // returns [2, 4]
+
+val rwList = mutableListOf(1, 2, 3)
+rwList.requireNoNulls()        // returns [1, 2, 3]
+if (rwList.none { it &gt; 6 }) println("No items above 6")  // prints "No items above 6"
+val item = rwList.firstOrNull()
+</code></pre>
+    <p>… as well as all the utilities you would expect such as sort, zip, fold, reduce
+        and so on.</p>
+    <p>Maps follow the same pattern. They can be easily instantiated and accessed like
+        this:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
+println(readWriteMap["foo"])  // prints "1"
+val snapshot: Map&lt;String, Int&gt; = HashMap(readWriteMap)
+</code></pre>
+</div>
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

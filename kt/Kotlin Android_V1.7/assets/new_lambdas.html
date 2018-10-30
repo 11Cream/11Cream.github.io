@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title id="toolbar_title">Lambdas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+        pre{
+        color:blue;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="higher-order-functions-and-lambdas">Higher-Order Functions and Lambdas</h1>
+    <h2 id="higher-order-functions">Higher-Order Functions</h2>
+    <p>A higher-order function is a function that takes functions as parameters, or
+        returns a function.
+        A good example of such a function is <code>lock()</code> that takes a lock
+        object and a function, acquires the lock, runs the function and releases the
+        lock:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; lock(lock: Lock, body: () -&gt; T): T {
+    lock.lock()
+    try {
+        return body()
+    }
+    finally {
+        lock.unlock()
+    }
+}
+</code></pre>
+    <p>Let's examine the code above: <code>body</code> has a <b style="color:blue;">function
+        type</b>: <code>() -&gt; T</code>,
+        so it's supposed to be a function that takes no parameters and returns a value
+        of type <code>T</code>.
+        It is invoked inside the <em class="keyword">try</em>-block, while protected by
+        the <code>lock</code>, and its result is returned by the <code>lock()</code>
+        function.</p>
+    <p>If we want to call <code>lock()</code>, we can pass another function to it as an
+        argument.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun toBeSynchronized() = sharedResource.operation()
+
+val result = lock(lock, ::toBeSynchronized)
+</code></pre>
+    <p>Another, often more convenient way is to pass a <b style="color:blue;">lambda expression</b>:
+    </p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val result = lock(lock, { sharedResource.operation() })
+</code></pre>
+    <p>Lambda expressions are described in more detail below, but for
+        purposes of continuing this section, let's see a brief overview:</p>
+    <ul>
+        <li>A lambda expression is always surrounded by curly braces,</li>
+        <li>Its parameters (if any) are declared before <code>-&gt;</code> (parameter
+            types may be omitted),
+        </li>
+        <li>The body goes after <code>-&gt;</code> (when present).</li>
+    </ul>
+    <p>In Kotlin, there is a convention that if the last parameter to a function is a
+        function, and you're passing a lambda expression as the corresponding argument,
+        you can specify it outside of parentheses:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">lock (lock) {
+    sharedResource.operation()
+}
+</code></pre>
+    <p>Another example of a higher-order function would be <code>map()</code>:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T, R&gt; List&lt;T&gt;.map(transform: (T) -&gt; R): List&lt;R&gt; {
+    val result = arrayListOf&lt;R&gt;()
+    for (item in this)
+        result.add(transform(item))
+    return result
+}
+</code></pre>
+    <p>This function can be called as follows:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val doubled = ints.map { value -&gt; value * 2 }
+</code></pre>
+    <p>Note that the parentheses in a call can be omitted entirely if the lambda is the
+        only argument to that call.</p>
+    <h3 id="it-implicit-name-of-a-single-parameter"><code>it</code>: implicit name of a
+        single parameter</h3>
+    <p>One other helpful convention is that if a function literal has only one
+        parameter,
+        its declaration may be omitted (along with the <code>-&gt;</code>), and its name
+        will be <code>it</code>:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.map { it * 2 }
+</code></pre>
+    <p>These conventions allow to write <b style="color:blue;">LINQ-style</b>
+        code:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">strings.filter { it.length == 5 }.sortBy { it }.map { it.toUpperCase() }
+</code></pre>
+    <h3 id="underscore-for-unused-variables-since-11">Underscore for unused variables
+        (since 1.1)</h3>
+    <p>If the lambda parameter is unused, you can place an underscore instead of its
+        name:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">map.forEach { _, value -&gt; println("$value!") }
+</code></pre>
+    <h3 id="destructuring-in-lambdas-since-11">Destructuring in Lambdas (since 1.1)</h3>
+    <h2 id="lambda-expressions-and-anonymous-functions">Lambda Expressions and Anonymous
+        Functions</h2>
+    <p>A lambda expression or an anonymous function is a "function literal", i.e. a
+        function that is not declared,
+        but passed immediately as an expression. Consider the following example:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">max(strings, { a, b -&gt; a.length &lt; b.length })
+</code></pre>
+    <p>Function <code>max</code> is a higher-order function, i.e. it takes a function
+        value as the second argument.
+        This second argument is an expression that is itself a function, i.e. a function
+        literal. As a function, it is equivalent to</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun compare(a: String, b: String): Boolean = a.length &lt; b.length
+</code></pre>
+    <h3 id="function-types">Function Types</h3>
+    <p>For a function to accept another function as a parameter, we have to specify a
+        function type for that parameter.
+        For example the abovementioned function <code>max</code> is defined as follows:
+    </p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; max(collection: Collection&lt;T&gt;, less: (T, T) -&gt; Boolean): T? {
+    var max: T? = null
+    for (it in collection)
+        if (max == null || less(max, it))
+            max = it
+    return max
+}
+</code></pre>
+    <p>The parameter <code>less</code> is of type <code>(T, T) -&gt; Boolean</code>,
+        i.e. a function that takes two parameters of type <code>T</code> and returns a
+        <code>Boolean</code>:
+        true if the first one is smaller than the second one.</p>
+    <p>In the body, line 4, <code>less</code> is used as a function: it is called by
+        passing two arguments of type <code>T</code>.</p>
+    <p>A function type is written as above, or may have named parameters, if you want to
+        document the meaning of each parameter.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val compare: (x: T, y: T) -&gt; Int = ...
+</code></pre>
+    <h3 id="lambda-expression-syntax">Lambda Expression Syntax</h3>
+    <p>The full syntactic form of lambda expressions, i.e. literals of function types,
+        is as follows:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum = { x: Int, y: Int -&gt; x + y }
+</code></pre>
+    <p>A lambda expression is always surrounded by curly braces,
+        parameter declarations in the full syntactic form go inside parentheses and have
+        optional type annotations,
+        the body goes after an <code>-&gt;</code> sign. If the inferred return type of
+        the lambda is not <code>Unit</code>, the last (or possibly single) expression
+        inside the lambda body is treated as the return value.</p>
+    <p>If we leave all the optional annotations out, what's left looks like this:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum: (Int, Int) -&gt; Int = { x, y -&gt; x + y }
+</code></pre>
+    <p>It's very common that a lambda expression has only one parameter.
+        If Kotlin can figure the signature out itself, it allows us not to declare the
+        only parameter, and will implicitly
+        declare it for us under the name <code>it</code>:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.filter { it &gt; 0 } // this literal is of type '(it: Int) -&gt; Boolean'
+</code></pre>
+    <p>We can explicitly return a value from the lambda using the <b style="color:blue;">qualified
+        return</b> syntax. Otherwise,
+        the value of the last expression is implictly returned. Therefore, the two
+        following snippets are equivalent:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.filter {
+    val shouldFilter = it &gt; 0
+    shouldFilter
+}
+
+ints.filter {
+    val shouldFilter = it &gt; 0
+    return@filter shouldFilter
+}
+</code></pre>
+    <p>Note that if a function takes another function as the last parameter, the lambda
+        expression argument can be passed
+        outside the parenthesized argument list.
+    </p>
+    <h3 id="anonymous-functions">Anonymous Functions</h3>
+    <p>One thing missing from the lambda expression syntax presented above is the
+        ability to specify the return type of the
+        function. In most cases, this is unnecessary because the return type can be
+        inferred automatically. However, if you
+        do need to specify it explicitly, you can use an alternative syntax: an <em>anonymous
+            function</em>.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun(x: Int, y: Int): Int = x + y
+</code></pre>
+    <p>An anonymous function looks very much like a regular function declaration, except
+        that its name is omitted. Its body
+        can be either an expression (as shown above) or a block:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun(x: Int, y: Int): Int {
+    return x + y
+}
+</code></pre>
+    <p>The parameters and the return type are specified in the same way as for regular
+        functions, except that the parameter
+        types can be omitted if they can be inferred from context:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.filter(fun(item) = item &gt; 0)
+</code></pre>
+    <p>The return type inference for anonymous functions works just like for normal
+        functions: the return type is inferred
+        automatically for anonymous functions with an expression body and has to be
+        specified explicitly (or is assumed to be
+        <code>Unit</code>) for anonymous functions with a block body.</p>
+    <p>Note that anonymous function parameters are always passed inside the parentheses.
+        The shorthand syntax allowing
+        to leave the function outside the parentheses works only for lambda
+        expressions.</p>
+    <p>One other difference between lambda expressions and anonymous functions is the
+        behavior of
+        <b style="color:blue;">non-local returns</b>. A <em
+                class="keyword">return</em> statement without a label
+        always returns from the function declared with the <em class="keyword">fun</em>
+        keyword. This means that a <em class="keyword">return</em>
+        inside a lambda expression will return from the enclosing function, whereas a
+        <em class="keyword">return</em> inside
+        an anonymous function will return from the anonymous function itself.</p>
+    <h3 id="closures">Closures</h3>
+    <p>A lambda expression or anonymous function (as well as a
+        <b style="color:blue;">local function</b> and an
+        <b style="color:blue;">object expression</b>)
+        can access its <em>closure</em>, i.e. the variables declared in the outer scope.
+        Unlike Java, the variables captured in the closure can be modified:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">var sum = 0
+ints.filter { it &gt; 0 }.forEach {
+    sum += it
+}
+print(sum)
+</code></pre>
+    <h3 id="function-literals-with-receiver">Function Literals with Receiver</h3>
+    <p>Kotlin provides the ability to call a function literal with a specified <em>receiver
+        object</em>.
+        Inside the body of the function literal, you can call methods on that receiver
+        object without any additional qualifiers.
+        This is similar to extension functions, which allow you to access members of the
+        receiver object inside the body of the function.
+        One of the most important examples of their usage is <b style="color:blue;">Type-safe
+            Groovy-style builders</b>.</p>
+    <p>The type of such a function literal is a function type with receiver:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">sum : Int.(other: Int) -&gt; Int
+</code></pre>
+    <p>The function literal can be called as if it were a method on the receiver
+        object:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">1.sum(2)
+</code></pre>
+    <p>The anonymous function syntax allows you to specify the receiver type of a
+        function literal directly.
+        This can be useful if you need to declare a variable of a function type with
+        receiver, and to use it later.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum = fun Int.(other: Int): Int = this + other
+</code></pre>
+    <p>Lambda expressions can be used as function literals with receiver when the
+        receiver type can be inferred from context.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">class HTML {
+    fun body() { ... }
+}
+
+fun html(init: HTML.() -&gt; Unit): HTML {
+    val html = HTML()  // create the receiver object
+    html.init()        // pass the receiver object to the lambda
+    return html
+}
+
+
+html {       // lambda with receiver begins here
+    body()   // calling a method on the receiver object
+}
+</code></pre>
+
+</div>
+
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

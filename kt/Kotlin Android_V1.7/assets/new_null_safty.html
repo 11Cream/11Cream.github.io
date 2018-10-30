@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Null Safety</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+pre{
+color:blue;
+}
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="null-safety">Null Safety</h1>
+    <h2 id="nullable-types-and-non-null-types">Nullable types and Non-Null Types</h2>
+    <p>Kotlin's type system is aimed at eliminating the danger of null references from
+        code, also known as the <strong>The
+            Billion Dollar Mistake.</strong></p>
+    <p>One of the most common pitfalls in many programming languages, including Java, is
+        that of accessing a member of a null reference, resulting in a null reference
+        exception. In Java this
+        would be the equivalent of a <code>NullPointerException</code> or NPE for short.
+    </p>
+    <p>Kotlin's type system is aimed to eliminate <code>NullPointerException</code>'s
+        from our code. The only possible causes of NPE's may be</p>
+    <ul>
+        <li>An explicit call to <code>throw NullPointerException()</code></li>
+        <li>Usage of the <code>!!</code> operator that is described below</li>
+        <li>External Java code has caused it</li>
+        <li>There's some data inconsistency with regard to initialization (an
+            uninitialized <em>this</em> available in a constructor is used somewhere)
+        </li>
+    </ul>
+    <p>In Kotlin, the type system distinguishes between references that can hold <em
+            class="keyword">null</em> (nullable references) and those that can not
+        (non-null references).
+        For example, a regular variable of type <code>String</code> can not hold <em
+                class="keyword">null</em>:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">var a: String = "abc"
+a = null // compilation error
+</code></pre>
+    <p>To allow nulls, we can declare a variable as nullable string, written <code>String?</code>:
+    </p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">var b: String? = "abc"
+b = null // ok
+</code></pre>
+    <p>Now, if you call a method or access a property on <code>a</code>, it's guaranteed
+        not to cause an NPE, so you can safely say</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = a.length
+</code></pre>
+    <p>But if you want to access the same property on <code>b</code>, that would not be
+        safe, and the compiler reports an error:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = b.length // error: variable 'b' can be null
+</code></pre>
+    <p>But we still need to access that property, right? There are a few ways of doing
+        that.</p>
+    <h2 id="checking-for-null-keyword--in-conditions">Checking for <em class="keyword">null</em>
+        in conditions</h2>
+    <p>First, you can explicitly check if <code>b</code> is <em
+            class="keyword">null</em>, and handle the two options separately:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = if (b != null) b.length else -1
+</code></pre>
+    <p>The compiler tracks the information about the check you performed, and allows the
+        call to <code>length</code> inside the <em class="keyword">if</em>.
+        More complex conditions are supported as well:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (b != null &amp;&amp; b.length &gt; 0) {
+    print("String of length ${b.length}")
+} else {
+    print("Empty string")
+}
+</code></pre>
+    <p>Note that this only works where <code>b</code> is immutable (i.e. a local
+        variable which is not modified between the check and the
+        usage or a member <em class="keyword">val</em> which has a backing field and is
+        not overridable), because otherwise it might
+        happen that <code>b</code> changes to <em class="keyword">null</em> after the
+        check.</p>
+    <h2 id="safe-calls">Safe Calls</h2>
+    <p>Your second option is the safe call operator, written <code>?.</code>:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">b?.length
+</code></pre>
+    <p>This returns <code>b.length</code> if <code>b</code> is not null, and <em
+            class="keyword">null</em> otherwise. The type of this expression is <code>Int?</code>.
+    </p>
+    <p>Safe calls are useful in chains. For example, if Bob, an Employee, may be
+        assigned to a Department (or not),
+        that in turn may have another Employee as a department head, then to obtain the
+        name of Bob's department head (if any), we write the following:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">bob?.department?.head?.name
+</code></pre>
+    <p>Such a chain returns <em class="keyword">null</em> if any of the properties in it
+        is null.</p>
+    <p>To perform a certain operation only for non-null values, you can use the safe
+        call operator together with <code>let</code>:
+    </p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val listWithNulls: List&lt;String?&gt; = listOf("A", null)
+for (item in listWithNulls) {
+     item?.let { println(it) } // prints A and ignores null
+}
+</code></pre>
+    <h2 id="elvis-operator">Elvis Operator</h2>
+    <p>When we have a nullable reference <code>r</code>, we can say "if <code>r</code>
+        is not null, use it, otherwise use some non-null value <code>x</code>":</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l: Int = if (b != null) b.length else -1
+</code></pre>
+    <p>Along with the complete <em class="keyword">if</em>-expression, this can be
+        expressed with the Elvis operator, written <code>?:</code>:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = b?.length ?: -1
+</code></pre>
+    <p>If the expression to the left of <code>?:</code> is not null, the elvis operator
+        returns it, otherwise it returns the expression to the right.
+        Note that the right-hand side expression is evaluated only if the left-hand side
+        is null.</p>
+    <p>Note that, since <em class="keyword">throw</em> and <em
+            class="keyword">return</em> are expressions in Kotlin, they can also be used
+        on
+        the right hand side of the elvis operator. This can be very handy, for example,
+        for checking function arguments:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(node: Node): String? {
+    val parent = node.getParent() ?: return null
+    val name = node.getName() ?: throw IllegalArgumentException("name expected")
+    // ...
+}
+</code></pre>
+    <h2 id="the--operator">The <code>!!</code> Operator</h2>
+    <p>The third option is for NPE-lovers. We can write <code>b!!</code>, and this will
+        return a non-null value of <code>b</code>
+        (e.g., a <code>String</code> in our example) or throw an NPE if <code>b</code>
+        is null:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = b!!.length
+</code></pre>
+    <p>Thus, if you want an NPE, you can have it, but you have to ask for it explicitly,
+        and it does not appear out of the blue.</p>
+    <h2 id="safe-casts">Safe Casts</h2>
+    <p>Regular casts may result into a <code>ClassCastException</code> if the object is
+        not of the target type.
+        Another option is to use safe casts that return <em class="keyword">null</em> if
+        the attempt was not successful:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val aInt: Int? = a as? Int
+</code></pre>
+    <h2 id="collections-of-nullable-type">Collections of Nullable Type</h2>
+    <p>If you have a collection of elements of a nullable type and want to filter
+        non-null elements, you can do so by using <code>filterNotNull</code>.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val nullableList: List&lt;Int?&gt; = listOf(1, 2, null, 4)
+val intList: List&lt;Int&gt; = nullableList.filterNotNull()
+</code></pre>
+
+</div>
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

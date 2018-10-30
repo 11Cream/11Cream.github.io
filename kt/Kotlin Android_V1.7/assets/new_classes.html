@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+pre{
+color:blue;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2> Classes</h2>
+
+    <p> Classes in Kotlin are declared using the keyword <b style="color:red;">class</b>:</p>
+    <pre><code><i>class</i> Invoice {
+    }</code></pre>
+
+
+    <h2>Constructors</h2>
+
+    <p>A class in Kotlin can have a <b>primary constructor </b>and one or more <b>secondary
+        constructors</b>.
+    </p>
+    <pre><code><i>class</i> Person <i>constructor</i>(firstName: String) {
+    }</b></code></pre>
+
+
+    <h3>Secondary Constructors</h3>
+
+    <p>The class can also declare <b>secondary constructors</b>, which are prefixed with
+        constructor:</p>
+
+    <pre><code><i>class</i> Person {
+    <i>constructor</i>(parent: Person) {
+    parent.children.add(<i>this</i>)
+    }
+    }</code>
+</pre>
+
+
+    <h3> Creating instances of classes</h3>
+
+    <p>To create an instance of a class, we call the constructor as if it were a regular
+        function:</p>
+
+    <pre><code><i> val</i> invoice = Invoice()
+
+    <i>val</i> customer = Customer("Joe Smith")</code></pre>
+    <p style="border: 1px solid black;outline-color:red; font-size:20dp;"><b style="color:red;">Note:</b>
+        that Kotlin does not have a <b style="color:red;">new</b> keyword.</p>
+
+
+    <h3>Inheritance</h3>
+
+    <p> All classes in Kotlin have a common superclass <b style="color:red;">Any</b>, that is a
+        default super for a class with no supertypes declared:</p>
+
+    <pre><code><i> class</i> Example // Implicitly inherits from Any</code></pre>
+
+    <p><b style="color:red;">Any</b> is not <em>java.lang.Object; </em>in particular, it does not
+        have any members other than <i>equals(), hashCode() and toString()</i>.</p>
+
+    <p>To declare an explicit supertype, we place the type after a colon in the class header:</p>
+
+    <pre><code><i>open class</i> Base(p: Int)
+
+    class Derived(p: Int) : Base(p)</code></pre>
+
+
+    <h3>Overriding Methods</h3>
+
+    <p>Kotlin requires explicit annotations for overridable members (we call them open) and for
+        overrides:</p>
+
+    <pre><code><i>open class</i> Base {
+    <i>open fun</i> v() {}
+    <i>fun</i> nv() {}
+    }
+    <i>class</i> Derived() : Base() {
+    <i>override fun</i> v() {}
+    }</code></pre>
+    <p>The override annotation is required for <b>Derived.v()</b>. If it were missing, the compiler
+        would complain.</p>
+
+
+    <h3>Abstract Classes</h3>
+
+    <p>A class and some of its members may be declared <b>abstract</b>. An abstract member does not
+        have an implementation in its class.
+
+    <p>We can override a non-abstract open member with an abstract one</p>
+
+    <pre><code><i>open class</i> Base {
+    <i>open fun </i>f() {}
+    }
+
+    <i> abstract class </i>Derived : Base() {
+    <i>override abstract fun</i> f()
+    }</code></pre>
+
+</div>
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

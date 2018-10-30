@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ranges</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="ranges">Ranges</h1>
+    <p>Range expressions are formed with <code>rangeTo</code> functions that have the
+        operator form <code>..</code> which is complemented by <em
+                class="keyword">in</em> and <em class="keyword">!in</em>.
+        Range is defined for any comparable type, but for integral primitive types it
+        has an optimized implementation. Here are some examples of using ranges</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (i in 1..10) { // equivalent of 1 &lt;= i &amp;&amp; i &lt;= 10
+    println(i)
+}
+</code></pre>
+    <p>Integral type ranges (<code>IntRange</code>, <code>LongRange</code>, <code>CharRange</code>)
+        have an extra feature: they can be iterated over.
+        The compiler takes care of converting this analogously to Java's indexed <em
+                class="keyword">for</em>-loop, without extra overhead.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4) print(i) // prints "1234"
+
+for (i in 4..1) print(i) // prints nothing
+</code></pre>
+    <p>What if you want to iterate over numbers in reverse order? It's simple. You can
+        use the <code>downTo()</code> function defined in the standard library</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 4 downTo 1) print(i) // prints "4321"
+</code></pre>
+    <p>Is it possible to iterate over numbers with arbitrary step, not equal to 1? Sure,
+        the <code>step()</code> function will help you</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4 step 2) print(i) // prints "13"
+
+for (i in 4 downTo 1 step 2) print(i) // prints "42"
+</code></pre>
+    <p>To create a range which does not include its end element, you can use the <code>until</code>
+        function:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1 until 10) { // i in [1, 10), 10 is excluded
+     println(i)
+}
+</code></pre>
+    <h2 id="how-it-works">How it works</h2>
+    <p>Ranges implement a common interface in the library:
+        <code>ClosedRange&lt;T&gt;</code>.</p>
+    <p><code>ClosedRange&lt;T&gt;</code> denotes a closed interval in the mathematical
+        sense, defined for comparable types.
+        It has two endpoints: <code>start</code> and <code>endInclusive</code>, which
+        are included in the range.
+        The main operation is <code>contains</code>, usually used in the form of <em
+                class="keyword">in</em>/<em class="keyword">!in</em> operators.</p>
+    <p>Integral type progressions (<code>IntProgression</code>,
+        <code>LongProgression</code>, <code>CharProgression</code>) denote an arithmetic
+        progression.
+        Progressions are defined by the <code>first</code> element, the
+        <code>last</code> element and a non-zero <code>step</code>.
+        The first element is <code>first</code>, subsequent elements are the previous
+        element plus <code>step</code>. The <code>last</code> element is always hit by
+        iteration unless the progression is empty.</p>
+    <p>A progression is a subtype of <code>Iterable&lt;N&gt;</code>, where
+        <code>N</code> is <code>Int</code>, <code>Long</code> or <code>Char</code>
+        respectively, so it can be used in <em class="keyword">for</em>-loops and
+        functions like <code>map</code>, <code>filter</code>, etc.
+        Iteration over <code>Progression</code> is equivalent to an indexed <em
+                class="keyword">for</em>-loop in Java/JavaScript:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-java">for (int i = first; i != last; i += step) {
+  // ...
+}
+</code></pre>
+    <p>For integral types, the <code>..</code> operator creates an object which
+        implements both <code>ClosedRange&lt;T&gt;</code> and <code>*Progression</code>.
+        For example, <code>IntRange</code> implements
+        <code>ClosedRange&lt;Int&gt;</code> and extends <code>IntProgression</code>,
+        thus all operations defined for <code>IntProgression</code> are available for
+        <code>IntRange</code> as well.
+        The result of the <code>downTo()</code> and <code>step()</code> functions is
+        always a <code>*Progression</code>.</p>
+    <p>Progressions are constructed with the <code>fromClosedRange</code> function
+        defined in their companion objects:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">IntProgression.fromClosedRange(start, end, step)
+</code></pre>
+    <p>The <code>last</code> element of the progression is calculated to find maximum
+        value not greater than the <code>end</code> value for positive <code>step</code>
+        or minimum value not less than the <code>end</code> value for negative <code>step</code>
+        such that <code>(last - first) % step == 0</code>.</p>
+    <h2 id="utility-functions">Utility functions</h2>
+    <h3 id="rangeto"><code>rangeTo()</code></h3>
+    <p>The <code>rangeTo()</code> operators on integral types simply call the
+        constructors of <code>*Range</code> classes, e.g.:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Int {
+    //...
+    operator fun rangeTo(other: Long): LongRange = LongRange(this, other)
+    //...
+    operator fun rangeTo(other: Int): IntRange = IntRange(this, other)
+    //...
+}
+</code></pre>
+    <p>Floating point numbers (<code>Double</code>, <code>Float</code>) do not define
+        their <code>rangeTo</code> operator, and the one provided by the standard
+        library for generic <code>Comparable</code> types is used instead:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">    public operator fun &lt;T: Comparable&lt;T&gt;&gt; T.rangeTo(that: T): ClosedRange&lt;T&gt;
+</code></pre>
+    <p>The range returned by this function cannot be used for iteration.</p>
+    <h3 id="downto"><code>downTo()</code></h3>
+    <p>The <code>downTo()</code> extension function is defined for any pair of integral
+        types, here are two examples:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Long.downTo(other: Int): LongProgression {
+    return LongProgression.fromClosedRange(this, other.toLong(), -1L)
+}
+
+fun Byte.downTo(other: Int): IntProgression {
+    return IntProgression.fromClosedRange(this.toInt(), other, -1)
+}
+</code></pre>
+    <h3 id="reversed"><code>reversed()</code></h3>
+    <p>The <code>reversed()</code> extension functions are defined for each
+        <code>*Progression</code>
+        classes, and all of them return reversed progressions.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.reversed(): IntProgression {
+    return IntProgression.fromClosedRange(last, first, -step)
+}
+</code></pre>
+    <h3 id="step"><code>step()</code></h3>
+    <p><code>step()</code> extension functions are defined for <code>*Progression</code>
+        classes,
+        all of them return progressions with modified <code>step</code> values (function
+        parameter).
+        The step value is required to be always positive, therefore this function never
+        changes the direction of iteration.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.step(step: Int): IntProgression {
+    if (step &lt;= 0) throw IllegalArgumentException("Step must be positive, was: $step")
+    return IntProgression.fromClosedRange(first, last, if (this.step &gt; 0) step else -step)
+}
+
+fun CharProgression.step(step: Int): CharProgression {
+    if (step &lt;= 0) throw IllegalArgumentException("Step must be positive, was: $step")
+    return CharProgression.fromClosedRange(first, last, if (this.step &gt; 0) step else -step)
+}
+</code></pre>
+    <p>Note that the <code>last</code> value of the returned progression may become
+        different from the <code>last</code> value of the original progression in order
+        to preserve the invariant <code>(last - first) % step == 0</code>. Here is an
+        example:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">(1..12 step 2).last == 11  // progression with values [1, 3, 5, 7, 9, 11]
+(1..12 step 3).last == 10  // progression with values [1, 4, 7, 10]
+(1..12 step 4).last == 9   // progression with values [1, 5, 9]
+</code></pre>
+
+</div>
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

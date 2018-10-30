@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kotlin Syntax</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+        pre{
+        color:blue;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Syntax</h1>
+    <h3>Classes</h3>
+    <p>To create a class in Kotlin, you have to use the <b>class</b> keyword.</p>
+    <br>
+    <pre><code>class Person {
+ }
+</code></pre>
+    <br>
+    <h3>Adding Properties</h3>
+    <p>A class usually has properties and member functions (also called methods).</p>
+    <br>
+    <pre><code>var name: String = ""
+var age: Int = 0
+</code></pre>
+    <br>
+    <p>As you can see, the syntax for creating
+        variables is slightly different from that of Java. To create a variable in Kotlin, you must
+        use the <b>var</b> keyword. </p>
+
+    <br>
+
+    <p style="border: 1px solid black;outline-color:red; font-size:20dp;"><b style="color:red;">Note:</b>To
+        create a variable that can hold null, you need to add a ? after the variable’s type.
+        For example:</p>
+    <br>
+    <pre>  <code>var college: String? = null</code></pre>
+    <br>
+    <p>Now that we have a class, creating an instance of it is easy:</p>
+    <br>
+    <pre>  <code>var jake = Person()</code></pre>
+    <br>
+    <p style="border: 1px solid black;outline-color:red; font-size:20dp;"><b style="color:red;">Note:</b>No,
+        Kotlin doesn’t have the<b> new</b> keyword. Once the instance has been created, you can
+        access its properties
+        the same way you would in Java:</p>
+    <pre>  <code>jake.name = "Jake Hill"
+    jake.age = 24
+    jake.college = "Stephen's College"</code></pre>
+
+
+    <br>
+    <h3> Adding Member Functions</h3>
+    <p>In Kotlin, functions are created using the <b style="color:red;">fun</b> keyword. Let’s add a
+        simple member function named isEligibleToVote
+        that returns a Boolean value:</p>
+    <br>
+    <pre>  <code>fun isEligibleToVote(): Boolean {
+    // If age is greater or equal to 18
+    // return true
+
+    return age >= 18
+    }</code></pre>
+    <br>
+    <p style="border: 1px solid black;outline-color:red; font-size:20dp;"><b style="color:red;">Note:</b>
+        Note that the return value’s type is indicated at the end of the function header. You can
+        call this method the same way you would in Java</p>
+    <br><br>
+    <pre>  <code>
+    jake.isEligibleToVote()</code></pre>
+
+
+    <br>
+
+    <h3> Creating Extensions</h3>
+    <p> Kotlin lets you extend a class by adding additional functions to it without modifying its
+        original definition.
+        Such functions are known as extensions. The names of these functions should be preceded by
+        the names of the classes they
+        extend.</p>
+    <br>
+    <p><b>For example</b>, to add an extension called isTeenager to the Person class, you write the
+        following code outside the
+        class:</p>
+
+    <br>
+    <pre><code>fun Person.isTeenager(): Boolean {
+
+    // If age falls in the range
+    // 13-19 return true
+
+    return age in 13..19
+    }</code></pre>
+    <br>
+    <p>This feature is especially useful when you want to extend classes that do not belong to your
+        project’s code base.
+        <b>For example</b>, the following code snippet adds an extension containsSpaces to the
+        String class:</p>
+    <br>
+    <pre><code>fun String.containsSpaces(): Boolean {
+    return this.indexOf(" ")!=-1
+    }</code></pre>
+    <br>
+
+    <h3>Creating Derived Classes</h3>
+
+    <p>It’s important to keep the following in mind when creating a derived class:</p>
+
+    <b style="color:red;">You must use a : instead of Java’s extends keyword.</b>
+    <br>
+    <p>If your base class has a constructor that takes parameters, your derived class should
+        initialize those parameters in the
+        header itself.</p>
+    <b>Let’s create a class named Employee that derives from Person:</b>
+    <br>
+    <pre><code>open class Person(var name: String, var age: Int, var college: String?) {
+    ...
+    }
+
+    class Employee(name: String, age: Int, college: String?, var company: String) : Person(name, age, college) {
+
+    }</code></pre>
+    <br>
+
+    <h3>Overriding Member Functions</h3>
+
+    <p>In Kotlin, you have to explicitly state that a member function can be overridden by using the
+        open annotation in the method’s header in the base class. In the derived class, open
+        functions can be overriden using the override annotation.
+    </p>
+    <p><b> For example,</b> to override the isEligibleToVote method, you add the following code
+        snippet to the Employee class:
+    </p><br>
+    <pre><code>override fun isEligibleToVote(): Boolean {
+    // Always return true
+    return true
+    }</code></pre>
+    <br>
+    <h3>Creating Static Methods</h3>
+    <br>
+    <p>Kotlin does not allow you to create static methods. However, it does allow you to create
+        package level functions that do not belong to any class.
+    </p>
+    <br>
+    <mark><pre><code>package com.dell.code.tutorial
+
+    fun main(args:Array) {
+
+    }
+   </code></pre>
+    </mark>
+
+
+</div>
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

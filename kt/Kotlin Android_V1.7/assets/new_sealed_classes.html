@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title id="toolbar_title">Sealed Classes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+        pre{
+        color:blue;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="sealed-classes">Sealed Classes</h1>
+    <p>Sealed classes are used for representing restricted class hierarchies, when a
+        value can have one of the types from a
+        limited set, but cannot have any other type. They are, in a sense, an extension
+        of enum classes: the set of values
+        for an enum type is also restricted, but each enum constant exists only as a
+        single instance, whereas a subclass
+        of a sealed class can have multiple instances which can contain state.</p>
+    <p>To declare a sealed class, you put the <code>sealed</code> modifier before the
+        name of the class. A sealed class can have
+        subclasses, but all of them must be declared in the same file as the sealed
+        class itself. (Before Kotlin 1.1,
+        the rules were even more strict: classes had to be nested inside the declaration
+        of the sealed class).</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">sealed class Expr
+data class Const(val number: Double) : Expr()
+data class Sum(val e1: Expr, val e2: Expr) : Expr()
+object NotANumber : Expr()
+
+fun eval(expr: Expr): Double = when (expr) {
+    is Const -&gt; expr.number
+    is Sum -&gt; eval(expr.e1) + eval(expr.e2)
+    NotANumber -&gt; Double.NaN
+}
+</code></pre>
+    <p>(The example above uses one additional new feature of Kotlin 1.1: the possibility
+        for data classes to extend other
+        classes, including sealed classes.)</p>
+    <p>Note that classes which extend subclasses of a sealed class (indirect inheritors)
+        can be placed anywhere, not necessarily in
+        the same file.</p>
+    <p>The key benefit of using sealed classes comes into play when you use them in a <b
+            style="color:blue;"><code>when</code> expression</b>.
+        If it's possible
+        to verify that the statement covers all cases, you don't need to add an <code>else</code>
+        clause to the statement.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun eval(expr: Expr): Double = when(expr) {
+    is Expr.Const -&gt; expr.number
+    is Expr.Sum -&gt; eval(expr.e1) + eval(expr.e2)
+    Expr.NotANumber -&gt; Double.NaN
+    // the `else` clause is not required because we've covered all the cases
+}
+</code></pre>
+
+
+</div>
+
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

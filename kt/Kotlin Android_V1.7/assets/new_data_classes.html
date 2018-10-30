@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title id="toolbar_title">Data Classes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+        pre{
+        color:blue;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="data-classes">Data Classes</h1>
+    <p>We frequently create a class to do nothing but hold data. In such a class some
+        standard functionality is often mechanically
+        derivable from the data. In Kotlin, this is called a <em>data class</em> and is
+        marked as <code>data</code>:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class User(val name: String, val age: Int)
+</code></pre>
+    <p>The compiler automatically derives the following members from all properties
+        declared in the primary constructor:</p>
+    <ul>
+        <li><code>equals()</code>/<code>hashCode()</code> pair,</li>
+        <li><code>toString()</code> of the form <code>"User(name=John, age=42)"</code>,
+        </li>
+        <li><b style="color:blue;"><code>componentN()</code> functions</b>
+            corresponding to the properties in their order of declaration,
+        </li>
+        <li><code>copy()</code> function (see below).</li>
+    </ul>
+    <p>If any of these functions is explicitly defined in the class body or inherited
+        from the base types, it will not be generated.</p>
+    <p>To ensure consistency and meaningful behavior of the generated code, data classes
+        have to fulfil the following requirements:</p>
+    <ul>
+        <li>The primary constructor needs to have at least one parameter;</li>
+        <li>All primary constructor parameters need to be marked as <code>val</code> or
+            <code>var</code>;
+        </li>
+        <li>Data classes cannot be abstract, open, sealed or inner;</li>
+        <li>(before 1.1) Data classes may only implement interfaces.</li>
+    </ul>
+    <p>Since 1.1, data classes may extend other classes .</p>
+    <p>On the JVM, if the generated class needs to have a parameterless constructor,
+        default values for all properties have to be specified.</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class User(val name: String = "", val age: Int = 0)
+</code></pre>
+    <h2 id="copying">Copying</h2>
+    <p>It's often the case that we need to copy an object altering <em>some</em> of its
+        properties, but keeping the rest unchanged.
+        This is what <code>copy()</code> function is generated for. For the
+        <code>User</code> class above, its implementation would be as follows:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun copy(name: String = this.name, age: Int = this.age) = User(name, age)
+</code></pre>
+    <p>This allows us to write</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val jack = User(name = "Jack", age = 1)
+val olderJack = jack.copy(age = 2)
+</code></pre>
+    <h2 id="data-classes-and-destructuring-declarations">Data Classes and Destructuring
+        Declarations</h2>
+    <p><em>Component functions</em> generated for data classes enable their use in <b
+            style="color:blue;">destructuring declarations</b>:</p>
+    <pre><code class="code _highlighted" data-lang="text/x-kotlin">val jane = User("Jane", 35)
+val (name, age) = jane
+println("$name, $age years of age") // prints "Jane, 35 years of age"
+</code></pre>
+    <h2 id="standard-data-classes">Standard Data Classes</h2>
+    <p>The standard library provides <code>Pair</code> and <code>Triple</code>. In most
+        cases, though, named data classes are a better design choice,
+        because they make the code more readable by providing meaningful names for
+        properties.</p>
+
+
+</div>
+
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Types</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div {
+        font-family: verdana;
+        font-size:15dp;
+        padding:5dp;
+        margin:5dp;
+        }
+        pre{
+        color:blue;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1> Basic Types</h1>
+
+    <p>In Kotlin, everything is an object in the sense that we can call member functions and
+        properties on any variable.
+        Some types are built-in, because their implementation is optimized, but to the user they
+        look like ordinary classes.</p>
+
+    <h3>Numbers</h3>
+
+    <p><b>Kotlin</b> handles numbers in a way close to <b>Java</b>, but not exactly the same.</p>
+
+    <p>Kotlin provides the following built-in types representing numbers (this is close to
+        Java):</p>
+    <br>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th>Type</th>
+                <th>Bit width</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Double</td>
+                <td>64</td>
+            </tr>
+            <tr>
+                <td>Float</td>
+                <td>32</td>
+            </tr>
+            <tr>
+                <td>Long</td>
+                <td>64</td>
+            </tr>
+            <tr>
+                <td>Int</td>
+                <td>32</td>
+            </tr>
+            <tr>
+                <td>Short</td>
+                <td>16</td>
+            </tr>
+            <tr>
+                <td>Byte</td>
+                <td>8</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <b style="color:red;">Note that characters are not numbers in Kotlin.</b>
+    <h3>Characters</h3>
+
+    <p>Characters are represented by the type <b>Char</b>. They can not be treated directly as
+        numbers</p>
+    <pre><code>fun check(c: Char) {
+    if (c == 1) { // ERROR: incompatible types
+    // ...
+    }
+    }</code></pre>
+
+    <h3> Booleans</h3>
+
+    <p> The type Boolean represents booleans, and has two values: <b>true</b> and <b>false</b>.</p>
+
+
+    <h3> Arrays</h3>
+
+    <p>Arrays in Kotlin are represented by the <b>Array</b> class, that has <b>get</b> and
+        <b>set</b> functions (that turn into [] by operator overloading conventions), and size
+        property, along with a few other useful member functions:</p>
+
+    <pre><code>class Array private constructor() {
+    val size: Int
+    operator fun get(index: Int): T
+    operator fun set(index: Int, value: T): Unit
+
+    operator fun iterator(): Iterator
+        // ...
+        }</code></pre>
+
+
+    <h3>Strings</h3>
+
+    <p>Strings are represented by the type String. Strings are immutable. Elements of a string are
+        characters that can be accessed by the
+        indexing operation: s[i]. A string can be iterated over with a for-loop:</p>
+
+    <pre><code>for (c in str) {
+    println(c)
+    }</code></pre>
+
+</div>
+<div id="footer" style="visibility:hidden">
+    <h1>&emsp;</h1>
+    <h1>&emsp;</h1>
+</div>
+</body>
+</html>
