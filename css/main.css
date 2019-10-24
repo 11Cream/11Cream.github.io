@@ -20,7 +20,7 @@ body{
     height: 340px;
     background: rgba(0,0,0,0 );
     transform: rotate(-30deg) skew(25deg) scale(.8); 
-    transition: 0.5s;
+    transition: 2.5s;
     float: left;
     margin-right: 100px;
 }
@@ -30,7 +30,7 @@ body{
     position: absolute;
     width: 100%;
     height: 100%;
-    transition: 0.5s;
+    transition: 2.5s;
 }
 .container img:nth-child(4)
 {
