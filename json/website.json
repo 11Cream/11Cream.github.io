@@ -1,0 +1,541 @@
+{
+  "aboutme": [
+    {
+      "title": "4 YEARS OF EXPERIENCE IN DEVOPS",
+      "details": "Do you need my RESUME ?",
+      "link": [
+        {
+          "fa-regular fa-file-pdf fa-2x": "./Darshan_Mistry.pdf"
+        }
+      ]
+    },
+    {
+      "title": "What I Seek in My Next Job?",
+      "details": "I aim to enhance my skills in cloud computing and security while gaining a deeper understanding of designing high-level infrastructure."
+    }
+  ],
+  "cv": [
+    {
+      "title": "Resume",
+      "thumbnail": "./images/p005cv.png",
+      "link": [
+        {
+          "fa-regular fa-file-pdf fa-2x": "./Darshan_Mistry.pdf"
+        }
+      ]
+    }
+  ],
+  "skill": [
+    {
+      "title": "Kubernetes",
+      "thumbnail": "./images/s01kubernetes.svg",
+      "details": "4 years of experience",
+      "link": [
+        {
+          "fab fa-github fa-2x": "link1"
+        },
+        {
+          "fas fa-certificate fa-2x": "https://www.credly.com/badges/a19fad97-3fc5-4b67-b880-f087f8197d3a/linked_in_profile"
+        }
+      ]
+    },
+    {
+      "title": "Docker",
+      "iicon": "fa-brands fa-docker fa-2xl",
+      "details": "4 years of experience",
+      "link": [
+        {
+          "fab fa-github fa-2x": "link1"
+        },
+        {
+          "fas fa-certificate fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-7EE77B1E37-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Linux",
+      "iicon": "fa-brands fa-linux fa-2xl",
+      "details": "4 years of experience",
+      "link": [
+        {
+          "fab fa-github fa-2x": "link1"
+        },
+        {
+          "fas fa-certificate fa-2x": "link2"
+        }
+      ]
+    },
+    {
+      "title": "AWS",
+      "iicon": "fa-brands fa-aws fa-2xl",
+      "details": "4 years of experience",
+      "link": [
+        {
+          "fab fa-github fa-2x": "link1"
+        },
+        {
+          "fas fa-certificate fa-2x": "link2"
+        }
+      ]
+    },
+    {
+      "title": "Terraform",
+      "iicon": "fa-brands fa-linux fa-2xl",
+      "details": "4 years of experience",
+      "link": [
+        {
+          "fab fa-github fa-2x": "link1"
+        },
+        {
+          "fas fa-certificate fa-2x": "link2"
+        }
+      ]
+    },
+    {
+      "title": "GitOps",
+      "iicon": "fa-brands fa-linux fa-2xl",
+      "details": "4 years of experience",
+      "link": [
+        {
+          "fab fa-github fa-2x": "link1"
+        },
+        {
+          "fas fa-certificate fa-2x": "link2"
+        }
+      ]
+    },
+    {
+      "title": "CI/CD",
+      "iicon": "fa-brands fa-linux fa-2xl",
+      "details": "4 years of experience",
+      "link": [
+        {
+          "fab fa-github fa-2x": "link1"
+        },
+        {
+          "fas fa-certificate fa-2x": "link2"
+        }
+      ]
+    },
+    {
+      "title": "Scripting",
+      "iicon": "fa-brands fa-python fa-2xl",
+      "details": "4 years of experience",
+      "link": [
+        {
+          "fab fa-github fa-2x": "link1"
+        },
+        {
+          "fas fa-certificate fa-2x": "link2"
+        }
+      ]
+    },
+    {
+      "title": "Design Infra",
+      "iicon": "fa-brands fa-linux fa-2xl",
+      "details": "4 years of experience",
+      "link": [
+        {
+          "fab fa-github fa-2x": "link1"
+        },
+        {
+          "fas fa-certificate fa-2x": "link2"
+        }
+      ]
+    }
+  ],
+  "certificate": [
+    {
+      "title": "Certified Kubernetes Administrator",
+      "details": "CNCF | The Linux Foundation | LF-e0g7gx1qv3",
+      "thumbnail": "./images/s01kubernetes.svg",
+      "link": [
+        {
+          "far fa-file-pdf fa-2x": "./cert/1.darshan-mistry-c33644e9-6815-426a-b838-c4552cffdd71-certificate.pdf"
+        },
+        {
+          "fas fa-certificate fa-2x": "https://training.linuxfoundation.org/certification/verify/"
+        },
+        {
+          "fa-solid fa-link fa-2x": "https://www.credly.com/badges/a19fad97-3fc5-4b67-b880-f087f8197d3a/linked_in_profile"
+        }
+      ]
+    },
+    {
+      "title": "Devops Professional",
+      "details": "IBM Developer Skills Network",
+      "thumbnail": "images/p003certificate.png",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://learn.intellipaat.com/certificates-backend/certificates/9df14a34-3636-404a-bb9f-0121d3629607"
+        }
+      ]
+    },
+    {
+      "title": "Python (Basic)",
+      "details": "HackerRank",
+      "iicon": "fa-brands fa-hackerrank fa-2xl",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://www.hackerrank.com/certificates/62419858c156"
+        }
+      ]
+    },
+    {
+      "title": "SQL (Basic)",
+      "details": "HackerRank",
+      "iicon": "fa-brands fa-hackerrank fa-2xl",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://www.hackerrank.com/certificates/e3cc5705f8ca"
+        }
+      ]
+    },
+    {
+      "title": "12 Factor App",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DEA95AA543B-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Postman Essentials",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DF3D407AA25-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "AWS Solutions Architect Associate Certification",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DFAE1EDB224-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Amazon Simple Storage Service (Amazon S3)",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DEF31C62CD9-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "AWS Lambda",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2D1466FE1B78-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "AWS Cloud Practitioner (CLF-C02)",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DF3BBF2D095-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "AWS RDS",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DF881E62CD7-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "AWS – IAM",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DFAC43F9747-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "GCP Cloud Digital Leader Certification",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2D1207151E38-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Shell Scripts for Beginners",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-7EE1FFED03-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Docker Certified Associate Exam Course",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-7EE77B1E37-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Udemy Labs – Certified Kubernetes Application Developer",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-7EEDDD3012-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Udemy Labs – Certified Kubernetes Administrator with Practice Tests",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-7EEDDC6E51-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Istio Service Mesh",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-8395E5B69C-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Helm for Beginners",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-85E9F0D875-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Introduction to Sealed Secrets in Kubernetes",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DFAE1CF5518-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "JSON Path Test – Free Course",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-7EE77B1E9B-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Lens – Kubernetes IDE",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-8159557C27-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Grafana Loki",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DF63F6FC8D3-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Terraform Associate Certification HashiCorp Certified",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-85F5CCE2A1-7EE1D29B11/"
+        }
+      ]
+    },
+    {
+      "title": "Pulumi Essentials",
+      "details": "KodeKloud",
+      "thumbnail": "images/kodekloud.jpg",
+      "link": [
+        {
+          "fa-solid fa-link fa-2x": "https://kodekloud.com/certificate-verification/7EED62F639-2DF3C7C05DCB-7EE1D29B11/"
+        }
+      ]
+    }
+  ],
+  "work": [
+    {
+      "title": "Skaud || November 2022 - September 2023 -- Gurugram, India",
+      "details": "DevOps Engineer",
+      "iicon": "fa-solid fa-laptop-file fa-2xl",
+      "link": [
+        {
+          "fas fa-globe fa-2x": "https://www.skuad.io/"
+        },
+        {
+          "fas fa-building fa-2x": "./3_Experience-Letter.pdf"
+        },
+        {
+          "far fa-user fa-2x": "./work.html"
+        }
+      ]
+    },
+    {
+      "title": "Omuni (Arvind Limited) || April 2021 - July 2022 -- Bengalore, India",
+      "details": "DevOps Cloud Engineer",
+      "iicon": "fa-solid fa-laptop-file fa-2xl",
+      "link": [
+        {
+          "fas fa-globe fa-2x": "https://omuni.com/"
+        },
+        {
+          "fas fa-building fa-2x": "./2_Experience-Letter.pdf"
+        },
+        {
+          "far fa-user fa-2x": "./work.html"
+        }
+      ]
+    },
+    {
+      "title": "Borndigital || October 2019 -  December 2020 -- Bengalore, India",
+      "details": "Associate DevOps Engineer",
+      "iicon": "fa-solid fa-laptop-file fa-2xl",
+      "link": [
+        {
+          "fas fa-building fa-2x": "./1_Experience-Letter.pdf"
+        },
+        {
+          "far fa-user fa-2x": "./work.html"
+        }
+      ]
+    }
+  ],
+  "project": [
+    {
+      "title": "Git Branching Strategy",
+      "iicon": "fa-solid fa-code fa-2xl",
+      "link": [
+        {
+          "fab fa-github fa-2x": "https://github.com/1111darsh/Project"
+        }
+      ]
+    },
+    {
+      "title": "1 Tier App Deployment",
+      "iicon": "fa-solid fa-code fa-2xl",
+      "link": [
+        {
+          "fab fa-github fa-2x": "https://github.com/1111darsh/static-website"
+        }
+      ]
+    },
+    {
+      "title": "3 Tier App Deployment",
+      "iicon": "fa-solid fa-code fa-2xl",
+      "link": [
+        {
+          "fab fa-github fa-2x": "https://github.com/1111darsh/3-Tier-structure"
+        }
+      ]
+    },
+    {
+      "title": "CI/CD with DevSecOps",
+      "iicon": "fa-solid fa-code fa-2xl",
+      "link": [
+        {
+          "fab fa-github fa-2x": "https://github.com/1111darsh/CI-CD"
+        }
+      ]
+    },
+    {
+      "title": "Monitoring on Kubernetes",
+      "iicon": "fa-solid fa-code fa-2xl",
+      "link": [
+        {
+          "fab fa-github fa-2x": "https://github.com/1111darsh/Monitor-on-K8s"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Bachelor of Engineering (2015 - 2019)",
+      "details": "Computers Science and Engineering |  Gujarat Technological University",
+      "iicon": "fa-solid fa-building-columns fa-2xl"
+    },
+    {
+      "title": "Higher Secondary School (2013 - 2015)",
+      "details": "Science | LMP & MCZ Higher Secondary School",
+      "iicon": "fa-solid fa-building-columns fa-2xl"
+    }
+  ],
+  "contectme": [
+    {
+      "title": "1111darsh@gmail.com",
+      "details": "+91 9727977391",
+      "thumbnail": "images/Darshan.jpg",
+      "link": [
+        {
+          "fab fa-linkedin-in fa-2x": "https://www.linkedin.com/in/1111darsh"
+        },
+        {
+          "fab fa-github fa-2x": "https://github.com/1111darsh"
+        },
+        {
+          "fab fa-stack-overflow fa-2x": "https://stackoverflow.com/users/12682482/1111darsh"
+        },
+        {
+          "fa-brands fa-x-twitter fa-2x": "https://twitter.com/1111darshan"
+        },
+        {
+          "fab fa-whatsapp fa-2x": "https://wa.me/919727977391/?text=Hi%20am%20visiting%201111darsh.com"
+        },
+        {
+          "fa-brands fa-youtube fa-2x": "https://www.youtube.com/channel/UC4sOs3hvMkolOuEOlEVvVlg"
+        },
+        {
+          "fa-brands fa-hackerrank fa-2x": "https://www.hackerrank.com/1111darsh"
+        }
+      ]
+    }
+  ]
+}

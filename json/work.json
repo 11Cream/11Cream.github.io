@@ -1,0 +1,360 @@
+{
+  "work": [
+    {
+      "title": "SKUAD.IO (ALL REMOTE)",
+      "details": "DevOps Engineer | November 2022 – September 2023",
+      "iicon": "fa-solid fa-laptop-file fa-2xl",
+      "link": [
+        {
+          "fas fa-globe fa-2x": "https://www.skuad.io/"
+        },
+        {
+          "fas fa-building fa-2x": "./3_Experience-Letter.pdf"
+        },
+        {
+          "far fa-user fa-2x": "link"
+        }
+      ],
+      "technology": [
+        "Kubernetes",
+        "Helm",
+        "Istio",
+        "Linux",
+        "Docker",
+        "AWS",
+        "GCP",
+        "Terraform",
+        "Kafka",
+        "Argocd",
+        "Prometheus",
+        "Grafana",
+        "Jenkins",
+        "Mongo",
+        "Python",
+        "ProstgenstSQL",
+        "Datadog"
+      ],
+      "accomplishment": [
+        "Data masking in PostgreSQL led to a 10% reduction in data breach-related costs, resulting in annual savings of $10000 while ensuring compliance and data security",
+        "Through the development of Helm charts for onboarding new microservices, I accomplished a significant reduction in service provisioning time by 50%, showcasing the ability to streamline deployment processes and enhance operational efficiency.",
+        "Mitigated all service downtime effectively by implementing robust health checks, liveliness probes, and readiness probes, ensuring uninterrupted service availability and improved reliability.",
+        "Successfully implemented cluster segregation using taints, tolerations, and node pools, significantly enhancing the stability and isolation of the development and staging environments in a multi-cluster setup.",
+        "Seamlessly deployed SonarQube utilizing the Helm chart, streamlining code quality analysis and ensuring robust software development practices.",
+        "Successfully established a graph within Grafana to enable the SonarQube matrix, improving visualization and monitoring capabilities for code quality analysis in our DevOps pipeline.",
+        "Completed a complex data migration project, successfully transferring over 10 million records with a 99% accuracy rate, resulting in minimal downtime and ensuring data integrity during the transition.",
+        "Optimized infrastructure by transitioning from traditional ingress and mTLS to Istio service mesh, resulting in a 30% reduction in operational costs and improved network security and performance.",
+        "Implemented automated certificate renewal using the Jetpack Certificate Manager Helm chart, reducing certificate expiration incidents by 95% and enhancing system reliability while saving approximately 10 hours of manual effort per month.",
+        "Established a robust monitoring system with proactive health checks that integrated with PagerDuty, reducing incident response times by 40% and ensuring timely incident resolution and improved system reliability.",
+        "Successfully automated GitLab Runner provisioning through Terraform, reducing setup time by 80% and enabling the concurrent execution of 100+ CI/CD pipelines, enhancing development and deployment efficiency.",
+        "Efficiently onboarded Logstash onto GCP's Kubernetes infrastructure using a streamlined Dockerfile-based deployment, resulting in improved log processing, reduced operational overhead, and enhanced system observability.",
+        "Successfully established a comprehensive disaster recovery plan leveraging Google Cloud CLI and Helm scripts, achieving a 99.9% recovery point objective (RPO) and reducing recovery time by 40%, ensuring data resilience and business continuity.",
+        "Implemented automated commit linking to the JIRA dashboard, reducing manual tracking efforts by 60%, enhancing project visibility, and enabling faster issue resolution and project management.",
+        "Enhanced environment security post-removing unused ports and IP addresses, resulting in a 20% reduction in potential attack vectors and strengthening the organization's cybersecurity posture.",
+        "Successfully configured tag-based deployments using ArgoCD, reducing deployment errors by 35% and accelerating the release cycle, resulting in a 20% improvement in development efficiency and product reliability."
+      ],
+      "RoleandResposibility": [
+        {
+          "Roles": [
+            "Responsibilities"
+          ]
+        },
+        {
+          "Administration of Kubernetes (k8s)": [
+            "Created multiple clusters securely from secrets.",
+            "Managed roles and permissions within Kubernetes environments.",
+            "Deployed various services (e.g., node applications, React applications, frontend applications, Python applications) on Kubernetes clusters using Helm charts and Argo CD.",
+            "Implemented cert-manager for SSL certificate management with Let's Encrypt.",
+            "Differentiated clusters using taints, tolerations, and node affinity.",
+            "Managed diverse DNS configurations using Istio virtual services and gateways.",
+            "Deployed cron job applications using Kubernetes cron jobs.",
+            "Ensured 100% application uptime through health checks.",
+            "Deployed monitoring solutions, including Loki, Mimir, Feastbelt, Prometheus, Certbot, Grafana, Blackbox, and SonarQube.",
+            "Configured GitLab runners within Kubernetes clusters."
+          ]
+        },
+        {
+          "Administration of Database": [
+            "Developed access-level masking to enhance data security.",
+            "Managed various access types and streamlined access control using Notion forms.",
+            "Oversaw database backup and disaster recovery procedures.",
+            "Ensured the security and restoration of databases.",
+            "Managed MongoDB databases, including backup and restoration tasks.",
+            "Orchestrated MongoDB atlas migrations for efficient data transfer.",
+            "Administered access controls and IAM roles. Managed Bitbucket and Gitlab along with their user"
+          ]
+        },
+        {
+          "Administration of ELK Stack": [
+            "Administered the ELK Stack for centralized log management.",
+            "Deployed the ELK Stack on Kubernetes (k8s) clusters.",
+            "Created different indices and pipelines for optimized log data handling.",
+            "Administered access controls and IAM roles. Managed Bitbucket and Gitlab along with their user"
+          ]
+        },
+        {
+          "Administration of GitLab a- CI/CD": [
+            "Created and managed repositories and GitLab CI/CD pipeline configurations.",
+            "Established a centralized repository for comprehensive application management.",
+            "Implemented branch-specific deployments with various secret management.",
+            "Managed access controls, roles, and groups for GitLab projects.",
+            "Deployed frontend applications from different branches using Vercel for testing.",
+            "Configured GitLab runners to build applications from Dockerfiles.",
+            "Created different stages within CI/CD pipelines for effective application management, including integration with SonarQube"
+          ]
+        },
+        {
+          "Administration of GCP": [
+            "Managed DNS configurations, firewall rules, and virtual machines (VMs).",
+            "Orchestrated the deployment and maintenance of applications on VMs.",
+            "Administered databases, including backup and restoration.",
+            "Managed Google Kubernetes Engine (GKE) clusters and node pools.",
+            "Ensured backup and restoration processes for Google Cloud Platform (GCP) databases.",
+            "Managed Pub/Sub configurations for GCP.",
+            "Administered Redis for caching.",
+            "Deployed Pritunal Access to manage VPN connections.",
+            "Utilized LDAP for application access management."
+          ]
+        },
+        {
+          "Mange Infrastructure": [
+            "Optimized cluster costs through resource management and cost-saving strategies.",
+            "Created disaster recovery documentation and implemented recovery processes within a 4-hour timeframe.",
+            "Managed Kafka on Confluent.",
+            "Implemented role-based access control for applications.",
+            "Managed Cloudflare configurations for DNS and Proxify.",
+            "Deployed applications using Terraform infrastructure as code."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "OMUNI (ARVIND LIMITED)",
+      "details": "DEVOPS CLOUD ENGINEER | April 2021 – July 2022",
+      "iicon": "fa-solid fa-laptop-file fa-2xl",
+      "link": [
+        {
+          "fas fa-globe fa-2x": "https://omuni.com/"
+        },
+        {
+          "fas fa-building fa-2x": "./2_Experience-Letter.pdf"
+        },
+        {
+          "far fa-user fa-2x": "link"
+        }
+      ],
+      "technology": [
+        "Kubernetes",
+        "helm",
+        "Istio",
+        "Linux",
+        "Docker",
+        "AWS",
+        "Terraform",
+        "Kafka",
+        "Mysql",
+        "Prometheus",
+        "Grafana",
+        "Jenkins",
+        "Mongo",
+        "Python"
+      ],
+      "accomplishment": [
+        "Data masking in PostgreSQL led to a 10% reduction in data breach-related costs, resulting in annual savings of $10000 while ensuring compliance and data security",
+        "Through the development of Helm charts for onboarding new microservices, I accomplished a significant reduction in service provisioning time by 50%, showcasing the ability to streamline deployment processes and enhance operational efficiency.",
+        "Mitigated all service downtime effectively by implementing robust health checks, liveliness probes, and readiness probes, ensuring uninterrupted service availability and improved reliability.",
+        "Successfully implemented cluster segregation using taints, tolerations, and node pools, significantly enhancing the stability and isolation of the development and staging environments in a multi-cluster setup.",
+        "Seamlessly deployed SonarQube utilizing the Helm chart, streamlining code quality analysis and ensuring robust software development practices.",
+        "Successfully established a graph within Grafana to enable the SonarQube matrix, improving visualization and monitoring capabilities for code quality analysis in our DevOps pipeline.",
+        "Completed a complex data migration project, successfully transferring over 10 million records with a 99% accuracy rate, resulting in minimal downtime and ensuring data integrity during the transition.",
+        "Optimized infrastructure by transitioning from traditional ingress and mTLS to Istio service mesh, resulting in a 30% reduction in operational costs and improved network security and performance.",
+        "Implemented automated certificate renewal using the Jetpack Certificate Manager Helm chart, reducing certificate expiration incidents by 95% and enhancing system reliability while saving approximately 10 hours of manual effort per month.",
+        "Established a robust monitoring system with proactive health checks that integrated with PagerDuty, reducing incident response times by 40% and ensuring timely incident resolution and improved system reliability.",
+        "Successfully automated GitLab Runner provisioning through Terraform, reducing setup time by 80% and enabling the concurrent execution of 100+ CI/CD pipelines, enhancing development and deployment efficiency.",
+        "Efficiently onboarded Logstash onto GCP's Kubernetes infrastructure using a streamlined Dockerfile-based deployment, resulting in improved log processing, reduced operational overhead, and enhanced system observability.",
+        "Successfully established a comprehensive disaster recovery plan leveraging Google Cloud CLI and Helm scripts, achieving a 99.9% recovery point objective (RPO) and reducing recovery time by 40%, ensuring data resilience and business continuity.",
+        "Implemented automated commit linking to the JIRA dashboard, reducing manual tracking efforts by 60%, enhancing project visibility, and enabling faster issue resolution and project management.",
+        "Enhanced environment security post-removing unused ports and IP addresses, resulting in a 20% reduction in potential attack vectors and strengthening the organization's cybersecurity posture.",
+        "Successfully configured tag-based deployments using ArgoCD, reducing deployment errors by 35% and accelerating the release cycle, resulting in a 20% improvement in development efficiency and product reliability."
+      ],
+      "RoleandResposibility": [
+        {
+          "Roles": [
+            "Responsibilities"
+          ]
+        },
+        {
+          "Administration of Kubernetes": [
+            "Manage 97+ Microservices deploy over the Kubernetes cluster",
+            "Maintain cluster 99.99% uptime using 3 master servers.",
+            "Increase or decrease worker node counts and HPA Count at sale time",
+            "Create New microservices environments and deploy them.",
+            "Create Deployment, Service and virtual service, Gateway using Istio service mash",
+            "Take regular Sprint deployments every Wednesday",
+            "Monitor each and microservice using Prometheus and Grafana"
+          ]
+        },
+        {
+          "Administration of AWS cloud": [
+            "Manage ELB, ASG, Target Group, EBS, ECR and EC2 servers.",
+            "Create new EC2 servers as per Requirements and manage their service group, key pair and volume",
+            "Manage VPC, Route table, Subnets, Elastic IP, NAT Gateway, VPC peering, Internet gateway",
+            "Create and manages RDS.",
+            "Create manages and deploy python codes in Lambda Function.",
+            "Create new subdomain and manage it using Route 53.",
+            "Manage S3 buckets and Objects Lifecycle policy and Access.",
+            "Manage SQS Queues and IAM users, roles, policies Manage Elastic catch and Redis CloudWatch and CloudTrail"
+          ]
+        },
+        {
+          "Administration of Jenkins": [
+            "Create integration and deployment CI/CD pipeline",
+            "Create a cleaning and scripting pipeline",
+            "Handle Jenkins build a package and Maintain User’s Access",
+            "Dockerized spring boot application, NodeJS, and Python Application with Jenkins pipeline"
+          ]
+        },
+        {
+          "Administration of Database": [
+            "Create and Delete Users, Databases (SQL, NoSQL, MongoDB), Tables, RDS, Servers and collections. Triggers, Index.",
+            "Provide required access to Users.",
+            "Maintain database size and free space.",
+            "Regulate clean-up using script and lambda function",
+            "Monitor CPU, Memory, Read-Write operation.",
+            "Maintain Connectivity and Security"
+          ]
+        },
+        {
+          "Administration of Linux Servers": [
+            "CPU and Memory management",
+            "Remove vulnerability",
+            "Create and manage users and their access",
+            "Manages disk space attach volumes",
+            "Process and Port management",
+            "Troubleshooting issues",
+            "Make ssh connections keys and Provides to users",
+            "Creates and maintains SCP server",
+            "Update SSL Certificate; OpenVPN, and Nessus Licences"
+          ]
+        },
+        {
+          "Administration of Version Control System": [
+            "Create repository, groups and projects in bitbucket",
+            "Managed Bitbucket and Gitlab along with their user"
+          ]
+        },
+        {
+          "Contributor Monitoring and Logging task": [
+            "Manage all Linux servers with Good monitoring using Prometheus and Grafana",
+            "Redesign and implement the ELK stack with the Kubernetes cluster",
+            "Maintain CPU, Memory, Disk space, Health check, etc. alerts",
+            "Manage backup of Elastic Search and store old logs in S3",
+            "Upgraded Version of Application Level Monitoring software Pinpoint."
+          ]
+        },
+        {
+          "Administration of Proxy and Indusface WAF": [
+            "Maintain proxy and reverse proxy",
+            "Nginx and Apache config management",
+            "Create squid proxy to maintain traffic",
+            "Analyse traffic volumes; traffic threads and block traffic Using Indusface WAF"
+          ]
+        },
+        {
+          "Administration of Analytics (Windows servers and proxy) servers": [
+            "Attach disk restore disk from a backup",
+            "Maintain inbound and outbound traffic",
+            "Provide RDP Access"
+          ]
+        },
+        {
+          "DevOps Team Maintainer at a small level": [
+            "Maintain and Assign prioritize task",
+            "Lead 5 members of the DevOps Team",
+            "Take regular report from DevOps, Help them",
+            "Take interviews and Train New freshers",
+            "Redesign DevOps process, Create SOP documents"
+          ]
+        },
+        {
+          "Cross-team Contributor": [
+            "Solves customer’s issue.",
+            "Help other teams to troubleshooting Issues",
+            "Create RCA reports",
+            "Participate in Audit of SOC2"
+          ]
+        },
+        {
+          "Others": [
+            "OpenVPN, FreeIPA bastion, Jenkins Users access",
+            "Create Ansible playbook and Terraform script",
+            "Manage a cluster of 3 Kafka servers and Manage the 3 RabbitMQ servers",
+            "Create and Delete Kafka and RabbitMQ queues",
+            "Create Dockerfile"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Borndigital",
+      "details": "Associate DevOps Engineer | October 2019 – December 2020",
+      "iicon": "fa-solid fa-laptop-file fa-2xl",
+      "link": [
+        {
+          "fas fa-building fa-2x": "./1_Experience-Letter.pdf"
+        },
+        {
+          "far fa-user fa-2x": "link"
+        }
+      ],
+      "technology": [
+        "Kubernetes",
+        "Jenkins",
+        "Docker",
+        "Linux",
+        "GCP",
+        "VPN"
+      ],
+      "accomplishment": [
+        "Data masking in PostgreSQL led to a 10% reduction in data breach-related costs, resulting in annual savings of $10000 while ensuring compliance and data security",
+        "Through the development of Helm charts for onboarding new microservices, I accomplished a significant reduction in service provisioning time by 50%, showcasing the ability to streamline deployment processes and enhance operational efficiency.",
+        "Mitigated all service downtime effectively by implementing robust health checks, liveliness probes, and readiness probes, ensuring uninterrupted service availability and improved reliability.",
+        "Successfully implemented cluster segregation using taints, tolerations, and node pools, significantly enhancing the stability and isolation of the development and staging environments in a multi-cluster setup.",
+        "Seamlessly deployed SonarQube utilizing the Helm chart, streamlining code quality analysis and ensuring robust software development practices.",
+        "Successfully established a graph within Grafana to enable the SonarQube matrix, improving visualization and monitoring capabilities for code quality analysis in our DevOps pipeline.",
+        "Completed a complex data migration project, successfully transferring over 10 million records with a 99% accuracy rate, resulting in minimal downtime and ensuring data integrity during the transition.",
+        "Optimized infrastructure by transitioning from traditional ingress and mTLS to Istio service mesh, resulting in a 30% reduction in operational costs and improved network security and performance.",
+        "Implemented automated certificate renewal using the Jetpack Certificate Manager Helm chart, reducing certificate expiration incidents by 95% and enhancing system reliability while saving approximately 10 hours of manual effort per month.",
+        "Established a robust monitoring system with proactive health checks that integrated with PagerDuty, reducing incident response times by 40% and ensuring timely incident resolution and improved system reliability.",
+        "Successfully automated GitLab Runner provisioning through Terraform, reducing setup time by 80% and enabling the concurrent execution of 100+ CI/CD pipelines, enhancing development and deployment efficiency.",
+        "Efficiently onboarded Logstash onto GCP's Kubernetes infrastructure using a streamlined Dockerfile-based deployment, resulting in improved log processing, reduced operational overhead, and enhanced system observability.",
+        "Successfully established a comprehensive disaster recovery plan leveraging Google Cloud CLI and Helm scripts, achieving a 99.9% recovery point objective (RPO) and reducing recovery time by 40%, ensuring data resilience and business continuity.",
+        "Implemented automated commit linking to the JIRA dashboard, reducing manual tracking efforts by 60%, enhancing project visibility, and enabling faster issue resolution and project management.",
+        "Enhanced environment security post-removing unused ports and IP addresses, resulting in a 20% reduction in potential attack vectors and strengthening the organization's cybersecurity posture.",
+        "Successfully configured tag-based deployments using ArgoCD, reducing deployment errors by 35% and accelerating the release cycle, resulting in a 20% improvement in development efficiency and product reliability."
+      ],
+      "RoleandResposibility": [
+        {
+          "Roles": [
+            "Responsibilities"
+          ]
+        },
+        {
+          "Role and Responsibilities": [
+            "Manage GCP and AWS cloud as Administrator access",
+            "Linux administrator",
+            "Manage all Linux server with Good monitoring",
+            "Created a shell/bash script",
+            "Made command-line tools and API using python scripting",
+            "Manage monitoring tools (Nagios)",
+            "Creates, deploys and manage private VPN to securing a network, own VPN using Wire guard",
+            "Manage Jenkins and CI/CD Tools",
+            "Handle Docker environment",
+            "Created dojo bitcoin (Node)",
+            "Manage SSL certificate and maintain it using let's encrypt",
+            "Designed and Deployed new infrastructure in AWS with s3, VPC, subnets, Load balancer, Cloud watch"
+          ]
+        }
+      ]
+    }
+  ]
+}

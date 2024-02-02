@@ -1,0 +1,154 @@
+Introduction
+4 Topics
+Course Introduction (08:55)
+Exam Information (01:47)
+Certification Details
+Join our Community
+
+Understanding the Kubernetes Attack Surface
+2 Topics
+The Attack (08:06)
+The 4C’s of Cloud Native security (03:13)
+
+
+
+
+Cluster Setup and Hardening
+57 Topics
+Section Introduction (01:15)
+What are CIS Benchmarks (05:52)
+Lab – Run CIS Benchmark Assessment tool on Ubuntu
+CIS benchmark for Kubernetes (02:41)
+Reference links
+Kube-bench (01:15)
+Lab – Kube-bench
+Kubernetes Security Primitives (03:18)
+Authentication (05:34)
+Article on Setting up Basic Authentication
+Service Accounts (08:02)
+Lab – Service Accounts
+TLS Introduction (01:28)
+TLS Basics (20:03)
+TLS in Kubernetes (07:48)
+TLS in Kubernetes – Certificate Creation (10:55)
+View Certificate Details (04:31)
+Reference links
+Labs – View Certificates
+Certificates API (06:07)
+Kubectl Proxy & Port Forward (06:48)
+Labs – Kubectl Proxy & Port Forward
+Kubernetes Dashboard (06:13)
+Securing Kubernetes Dashboard (01:38)
+Reference links
+Labs – Secure Kubernetes Dashboard
+Verify platform binaries before deploying (02:11)
+Labs – Verify platform binaries
+Reference links
+Ingress (22:34)
+Article: Ingress
+Labs – Ingress – 1
+Ingress – Annotations and rewrite-target
+Labs – Ingress – 2
+Docker Service Configuration (06:57)
+Docker – Securing the Daemon (07:25)
+Feedback
+Course Resources
+
+https://www.cisecurity.org/cis-benchmarks/#kubernetes
+https://github.com/mmumshad/kubernetes-the-hard-way/tree/master/tools
+https://www.cisecurity.org/cybersecurity-tools/cis-cat-pro/cis-benchmarks-supported-by-cis-cat-pro/
+
+System Hardening
+30 Topics
+Section Introduction (01:30)
+Least Privilege Principle (05:16)
+Minimize host OS footprint Intro (00:51)
+Limit Node Access (05:48)
+Lab – Limit Node Access
+SSH Hardening (05:49)
+Reference links
+Privilege Escalation in Linux (03:05)
+Lab – SSH Hardening and sudo
+Remove Obsolete Packages and Services (02:56)
+Reference links
+Restrict Kernel Modules (02:31)
+Identify and Disable Open Ports (02:29)
+Reference links
+Lab – Identify open ports, remove packages services
+Minimize IAM roles (05:46)
+Minimize external access to the network (02:12)
+UFW Firewall Basics (05:55)
+Lab – UFW Firewall
+Linux Syscalls (04:20)
+Restrict syscalls using seccomp (08:37)
+Implement Seccomp in Kubernetes (07:51)
+Lab – Seccomp
+AppArmor (04:09)
+Creating AppArmor Profiles (05:11)
+AppArmor in Kubernetes (02:44)
+Linux Capabilities (04:05)
+Lab – AppArmor
+Feedback
+
+Minimize Microservice Vulnerabilities
+27 Topics
+Section Introduction (00:54)
+Security Contexts (01:52)
+Labs – Security Contexts
+Admission Controllers (08:07)
+Labs – Admission Controllers
+Validating and Mutating Admission Controllers (10:26)
+Labs – Validating and Mutating Admission Controllers
+Pod Security Policies (07:39)
+Labs – PSP
+Open Policy Agent (OPA) (09:48)
+Reference links
+Labs – OPA
+OPA in Kubernetes (09:45)
+Labs – OPA in Kubernetes
+OPA Gatekeeper in Kubernetes
+Manage Kubernetes secrets (05:38)
+Lab – Manage Kubernetes secrets
+Container Sandboxing (06:53)
+gVisor (04:55)
+kata Containers (02:25)
+Runtime Classes (03:17)
+Using Runtimes in Kubernetes (02:23)
+Lab – Using Runtimes in Kubernetes
+One way SSL vs Mutual SSL (04:37)
+Implement pod to pod encryption by use of mTLS (06:35)
+Feedback
+Article – Note on Secrets
+
+Supply Chain Security
+11 Topics
+Section Introduction (00:30)
+Minimize base image footprint (07:24)
+Image Security (04:43)
+Labs – Image Security
+Whitelist Allowed Registries – Image Policy Webhook (05:16)
+Labs – Whitelist Allowed Registries – ImagePolicyWebhook
+Use static analysis of user workloads (e.g.Kubernetes resources, Docker files) (02:46)
+Labs – kubesec
+Scan images for known vulnerabilities (Trivy) (08:34)
+Labs – Trivy
+Feedback
+
+Monitoring, Logging and Runtime Security
+13 Topics
+Perform behavioral analytics of syscall process (04:47)
+Falco Overview and Installation (02:53)
+Use Falco to Detect Threats (08:39)
+Falco Configuration Files (06:54)
+Labs – Use Falco to Detect Threats
+Reference links
+Mutable vs Immutable Infrastructure (04:50)
+Ensure Immutability of Containers at Runtime (05:18)
+Labs – Ensure Immutability of Containers at Runtime
+Use Audit Logs to monitor access (10:18)
+Labs – Use Audit Logs to monitor access
+Feedback
+
+Mock Exams
+4 Topics
+

@@ -1,0 +1,96 @@
+
+Lesson Content
+100% Complete
+3/3 Steps
+Course Introduction (02:22)
+Pre-requisites (01:30)
+Join our Community
+Istio Introduction
+16 Topics
+Lesson Content
+75% Complete
+12/16 Steps
+Section Introduction (01:19)
+Monoliths & Microservices (14:44)
+Service Mesh (02:26)
+Istio (02:02)
+Installing Istio – Introduction (02:19)
+Installing Istioctl (04:08)
+Installing Istio on Your Cluster (01:18)
+Lab: Installing Istio on Your Cluster
+Deploying Our First Application on Istio (04:00)
+Demo: Deploying Our First Application on Istio (03:19)
+Lab: Deploying Our First Application on Istio
+Visualizing Service Mesh with Kiali (01:45)
+Demo: Installing Kiali (03:33)
+Demo: Create Traffic Into Your Mesh (06:13)
+Lab: Istio Kiali
+Feedback
+Pre-requisites
+4 Topics
+Lesson Content
+100% Complete
+4/4 Steps
+Kubernetes Services (03:32)
+Sidecars (01:59)
+Envoy (02:43)
+Course Resources
+Traffic Management
+19 Topics
+Lesson Content
+26% Complete
+5/19 Steps
+Section Introduction (00:37)
+Gateways (05:25)
+Virtual Services (09:40)
+Destination Rules (04:11)
+Demo: Gateways (04:09)
+Demo: Virtual Services (09:40)
+Lab: Virtual Services
+Demo: Destination Rules (05:56)
+Lab: Destination Rules
+Fault Injection (01:37)
+Demo: Fault Injection (02:58)
+Timeouts (02:47)
+Demo: Timeouts (02:11)
+Lab: Fault Injection Timeouts
+Retries (01:13)
+Circuit Breaking (01:24)
+Demo: Circuit Breaking (02:56)
+A/B Testing (01:27)
+Feedback
+Security
+10 Topics
+Lesson Content
+0% Complete
+0/10 Steps
+Section Introduction (00:24)
+Security in Istio (01:23)
+Istio Security Architecture (01:41)
+Authentication (03:12)
+Demo: Authentication (03:04)
+Authorization (03:03)
+Demo: Authorization (05:16)
+Certificate Management (01:32)
+Demo: Certificate Management (06:27)
+Lab: Istio Security Architecture
+Observability
+8 Topics
+Lesson Content
+0% Complete
+0/8 Steps
+Section Introduction (01:01)
+Visualizing Metrics with Prometheus and Grafana (00:49)
+Demo: Visualizing Metrics with Prometheus and Grafana (06:27)
+Distributed Tracing with Jaeger (00:37)
+Demo: Distributed Tracing with Jaeger (04:41)
+Lab: Observability Lab
+Demo: Kiali in Detail (07:48)
+A Quick Note on Service Mesh Interface (02:01)
+Conclusion
+2 Topics
+Lesson Content
+0% Complete
+0/2 Steps
+Conclusion (00:29)
+Feedback
