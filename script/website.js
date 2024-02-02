@@ -1,5 +1,5 @@
 async function getAPI() {
-  let host = "https://1111darsh.com";
+  let host = "https://11cream.github.io";
   let response = await fetch(host + "/json/website.json");
   let data = await response.json();
   return data;
